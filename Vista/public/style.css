@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+#menu {
+    width: 180px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #272626;
+    padding-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+#menu a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #555;
+}
+
+#contenido {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+#reloj {
+    font-size: 1em;
+    margin-top: 30px;
+    border: solid 2px black;
+    color: #624f02;
+}
+
+.botones-cont {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.btn1 {
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: #73640e;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn1:hover {
+    background-color: #45a049;
+}
