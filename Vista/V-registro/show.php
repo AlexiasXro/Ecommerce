@@ -22,6 +22,7 @@ if (isset($_GET['id'])) {
     exit();
 }
 
+
 // Crear una instancia del controlador
 $usuarioController = new UsuarioController();
 
@@ -36,14 +37,14 @@ $detallesUsuario = $usuarioController->mostrarDetallesUsuario($idUsuario);
     <a href="index.php" class="btn btn-primary">Regresar</a>
     <a href="edit.php?id=<?= $detallesUsuario[0] ?>" class="btn btn-success">Actualizar</a>
     <!-- Button trigger modal -->
-    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</a>
+    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalShow">Eliminar</a>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Show -->
+    <div class="modal fade" id="exampleModalShow" tabindex="-1" aria-labelledby="exampleModalLabelShow" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">¿Desea eliminar el registro?</h1>
+                    <h1 class="modal-title fs-5" id="uniqueModalLabel">¿Desea eliminar el registro?</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -51,8 +52,8 @@ $detallesUsuario = $usuarioController->mostrarDetallesUsuario($idUsuario);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="delete.php?id=<?= $detallesUsuario['id'] ?>"></a>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <a href="delete.php?id=<?= $detallesUsuario['id'] ?>" class="btn btn-danger">Eliminar</a>
+                    
                 </div>
             </div>
         </div>

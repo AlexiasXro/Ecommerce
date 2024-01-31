@@ -81,18 +81,24 @@ class UsuarioController {
         // Verificar si se obtuvo el registro correctamente
         if ($registro) {
             // Utilizar el método público para actualizar los datos
-            $actualizacionExitosa = $usuarioModel->actualizarDatos($nuevosDatos);
+            $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
     
             return $actualizacionExitosa;
         } else {
             return false;
         }
     }
-    
+    // Función para eliminar un usuario
+    public function eliminarUsuario($idUsuario) {
+        $usuarioModel = new Usuario();
+        $result = $usuarioModel->eliminarUsuario($idUsuario);
+
+        // Puedes agregar lógica adicional según el resultado de la eliminación
+
+        return $result;
+    }
+
 
 }
-
-    
-
 
 ?>

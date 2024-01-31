@@ -3,7 +3,7 @@
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/usuarioCon.php');
 
-// Asegúrate de tener el ID del usuario que deseas editar
+
 if (isset($_GET['id'])) {
     $idUsuario = $_GET['id'];
     // Verifica y valida $idUsuario
@@ -51,9 +51,9 @@ if ($detallesUsuario !== false) {
         <!-- Puedes añadir otros botones según sea necesario -->
     </div>
     <div class="mb-3 row">
-        <label for="idusuario" class="col-sm-2 col-form-label">Id</label>
+        <label for="id" class="col-sm-2 col-form-label">Id</label>
         <div class="col-sm-10">
-            <input type="text" name="idusuario" class="form-control" id="idusuario" value="<?= $detallesUsuario['id'] ?>">
+            <input type="text" name="id" class="form-control" id="id" value="<?= $detallesUsuario['id'] ?>">
         </div>
     </div>
     <div class="mb-3 row">

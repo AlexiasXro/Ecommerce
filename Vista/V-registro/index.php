@@ -1,5 +1,6 @@
 V-REGISTRO/INDEX/lista los usuarios
 <?php
+var_dump($_GET);
 // Incluye el encabezado, menú y controlador.
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/menu.php');
@@ -45,14 +46,14 @@ $usuarios = $usuarioController->listarUsuarios();
                         <td><a href='show.php?id=<?= $usuario['id'] ?>' class='btn btn-primary'>Ver</a></td>
                         <td><a href='edit.php?id=<?= $usuario['id'] ?>' class='btn btn-success'>Actualizar</a></td>
                         <!-- Button trigger modal -->
-                        <td><a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</a></td>
-
+                        <td><a href='delete.php?id=<?= $usuario['id'] ?>' class='btn btn-danger' data-toggle="modal" data-target="#exampleModalIndex">Eliminar</a></td>
+                        
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModalIndex" tabindex="-1" aria-labelledby="exampleModalLabelIndex" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">¿Desea eliminar el registro?</h1>
+                                        <h1 class="modal-title fs-5" id="uniqueModalLabel">¿Desea eliminar el registro?</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -60,8 +61,8 @@ $usuarios = $usuarioController->listarUsuarios();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                                        <a href="delete.php?id=<?= $usuario['id'] ?>"></a>
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                        <a href="delete.php?id=<?= $usuario['id'] ?>" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalIndex">Eliminar</a>
+                                        
                                     </div>
                                 </div>
                             </div>
