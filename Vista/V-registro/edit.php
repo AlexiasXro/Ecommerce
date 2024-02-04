@@ -1,5 +1,4 @@
 <?php
-// Incluye el encabezado y el menú
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/usuarioCon.php');
 
@@ -17,6 +16,7 @@ $usuarioController = new UsuarioController();
 
 // Obtiene los detalles del usuario por ID
 $detallesUsuario = $usuarioController->mostrarDetallesUsuario($idUsuario);
+
 
 // Verifica si se obtuvieron los detalles del usuario
 if ($detallesUsuario !== false) {
@@ -44,8 +44,9 @@ if ($detallesUsuario !== false) {
 }
 ?>
 
+<h3>Modificando Registro</h3>
 <form action="update.php?id=<?= $idUsuario ?>" method="post" autocomplete="off">
-    <h2>Modificando Registro</h2>
+    
     <div class="pd-3">
         <a href="index.php" class="btn btn-primary">Regresar</a>
         <!-- Puedes añadir otros botones según sea necesario -->

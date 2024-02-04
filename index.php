@@ -1,12 +1,17 @@
 <?php
-
     // Incluye el encabezado y el menú
-    require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
-    require_once('c://xampp/htdocs/ecommerce/Vista/includes/menu.php');
+    require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');   
 ?>
 
-<a href="/ecommerce/Vista/V-registro/create.php"class="btn btn-primary">Agregar nuevo usuario</a>
 
+<h2>Bienvenido</h2>
+
+        <div class="mb-3">
+            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo usuario</a>
+            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo producto</a>
+            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo  orden  </a>
+            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo orden/producto</a>
+        </div>
 
 
 

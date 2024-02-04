@@ -3,9 +3,10 @@
 
 // Incluye el encabezado y el menú
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
-require_once('c://xampp/htdocs/ecommerce/Vista/includes/menu.php');
+
 ?>
 <div class="container mt-3 row justify-content-center col-md-6">
+    <h3>Nuevo Usuario</h3>
     <form action="store.php" method="POST" autocomplete="off">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre y Apellido</label>

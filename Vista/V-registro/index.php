@@ -1,9 +1,5 @@
-V-REGISTRO/INDEX/lista los usuarios
 <?php
-var_dump($_GET);
-// Incluye el encabezado, menú y controlador.
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
-require_once('c://xampp/htdocs/ecommerce/Vista/includes/menu.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/usuarioCon.php');
 
 // Crear una instancia del controlador
@@ -12,13 +8,20 @@ $usuarioController = new UsuarioController();
 // Llamar a la función para listar usuarios
 $usuarios = $usuarioController->listarUsuarios();
 
+
+
+// Mostrar mensaje de éxito
+if (isset($_SESSION['mensaje'])) {
+    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
+    unset($_SESSION['mensaje']);  // Limpiar la variable de sesión
+}
+
 ?>
 
-<h2 class="text-center">Lista de Usuarios</h2>
+<h3>Lista de Usuarios</h3>
 <div class="pd-3">
     <a href="index.php" class="btn btn-primary">Regresar</a>
-    <!-- Puedes añadir otros botones según sea necesario -->
-
+    <!--  otros botones  -->
 </div>
 
 <div class="container-fluid mt-3">
@@ -27,10 +30,7 @@ $usuarios = $usuarioController->listarUsuarios();
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
             <th scope="col">Email</th>
-            <th scope="col">Fecha registrado</th>
-            <th scope="col">Ultimo Acceso</th>
-            <th scope="col">Administrador</th>
-            <th scope="col">Accion</th>
+            <th scope="col" colspan="3">Accion</th>
         </thead>
         <tbody>
             <?php if (is_array($usuarios) && !empty($usuarios)) : ?>
@@ -39,14 +39,13 @@ $usuarios = $usuarioController->listarUsuarios();
                         <td><?= $usuario['id'] ?></td>
                         <td><?= $usuario['nombre'] ?></td>
                         <td><?= ($usuario['email'] !== false ? $usuario['email'] : 'Vacio') ?></td>
-                        <td><?= ($usuario['fecha_registro'] !== false ? $usuario['fecha_registro'] : 'Vacio') ?></td>
-                        <td><?= ($usuario['ultimo_acceso'] !== false ? $usuario['ultimo_acceso'] : 'Vacio') ?></td>
-                        <td><?= ($usuario['admin'] == 1 ? 'Sí' : 'No') ?></td>
-                        <!-- acciones adicionales -->
-                        <td><a href='show.php?id=<?= $usuario['id'] ?>' class='btn btn-primary'>Ver</a></td>
-                        <td><a href='edit.php?id=<?= $usuario['id'] ?>' class='btn btn-success'>Actualizar</a></td>
-                        <!-- Button trigger modal -->
-                        <td><a href='delete.php?id=<?= $usuario['id'] ?>' class='btn btn-danger' data-toggle="modal" data-target="#exampleModalIndex">Eliminar</a></td>
+                        
+                        <td colspan="3">
+                                <a href='show.php?id=<?= $usuario['id'] ?>' class='btn btn-primary m-1'>Ver</a>
+                                <a href='edit.php?id=<?= $usuario['id'] ?>' class='btn btn-success m-1'>Actualizar</a>
+                                <!-- Button trigger modal -->
+                                <a href='delete.php?id=<?= $usuario['id'] ?>' class='btn btn-danger m-1' data-bs-toggle="modal" data-bs-target="#exampleModalIndex">Eliminar</a>
+                        </td>
                         
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalIndex" tabindex="-1" aria-labelledby="exampleModalLabelIndex" aria-hidden="true">
@@ -61,8 +60,8 @@ $usuarios = $usuarioController->listarUsuarios();
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                                        <a href="delete.php?id=<?= $usuario['id'] ?>" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalIndex">Eliminar</a>
-                                        
+                                        <a href="delete.php?id=<?= $usuario['id'] ?>" class="btn btn-danger">Eliminar</a>
+
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +74,12 @@ $usuarios = $usuarioController->listarUsuarios();
                 </tr>
             <?php endif; ?>
         </tbody>
+    </table>
+</div>
 
-        <?php
-        // Incluye el pie de página
-        require_once('c://xampp/htdocs/ecommerce/Vista/includes/footer.php');
-        ?>
+
+
+<?php
+// Incluye el pie de página
+require_once('c://xampp/htdocs/ecommerce/Vista/includes/footer.php');
+?>

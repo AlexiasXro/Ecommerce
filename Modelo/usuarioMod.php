@@ -156,6 +156,7 @@ class Usuario
         try {
             // Establecer la conexión
             $conexion = Conexion::conectar();
+           
 
             // Construir la consulta SQL
             $sql = "INSERT INTO usuarios (nombre, email, contrasena, direccion, provincia, postal, telefono, fecha_registro, ultimo_acceso, admin)
@@ -205,9 +206,8 @@ class Usuario
     {
         try {
             $conexion = Conexion::conectar();
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // consulta SQL
+            // Consulta SQL
             $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
 
             // Preparar la declaración
@@ -216,20 +216,19 @@ class Usuario
             // Vincular los parámetros
             $stmt->bindParam(':id', $idRegistro, PDO::PARAM_INT);
 
-
             $stmt->execute();
 
             // Obtener el resultado como un array asociativo
             $registro = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $conexion = null;
-
-            return $registro; //esta todo bien
+            return $registro; // Todo está bien
         } catch (PDOException $e) {
-            echo "Error al obtener el registro: " . $e->getMessage();
+            // Registra el error de manera más específica
+            error_log("Error al obtener el registro por ID: " . $e->getMessage());
             return false;
         }
     }
+
     //INDEX
     public function obtenerTodosRegistro()
     {
@@ -242,7 +241,7 @@ class Usuario
             $stmt->execute();
             $registros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $conexion = null;
+            
 
             return $registros;
         } catch (PDOException $e) {
@@ -250,42 +249,61 @@ class Usuario
             return false;
         }
     }
+    
+    
+
 
     // update: Método para actualizar los datos de un usuario
     public function actualizarDatos($id, $nuevosDatos)
-    {
-        try {
-            $conexion = Conexion::conectar();
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+{
+    try {
+        $conexion = Conexion::conectar();
+        
+       
+        // Construir la consulta SQL
+        $sql = "UPDATE usuarios SET 
+                nombre = :nombre, 
+                email = :email, 
+                contrasena = :contrasena, 
+                direccion = :direccion, 
+                provincia = :provincia, 
+                postal = :postal, 
+                telefono = :telefono 
+                WHERE id = :id";
 
+        $stmt = $conexion->prepare($sql);
 
-            // Construir la consulta SQL
-            $sql = "UPDATE usuarios SET nombre = :nombre, email = :email, contrasena = :contrasena, direccion = :direccion, provincia = :provincia, postal = :postal, telefono = :telefono WHERE id = :id";
-
-            $stmt = $conexion->prepare($sql);
-
-            // Vincular los parámetros
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
-            $stmt->bindParam(':email', $nuevosDatos['email'], PDO::PARAM_STR);
-            $stmt->bindParam(':contrasena', $nuevosDatos['contrasena'], PDO::PARAM_STR);
-            $stmt->bindParam(':direccion', $nuevosDatos['direccion'], PDO::PARAM_STR);
-            $stmt->bindParam(':provincia', $nuevosDatos['provincia'], PDO::PARAM_STR);
-            $stmt->bindParam(':postal', $nuevosDatos['postal'], PDO::PARAM_STR);
-            $stmt->bindParam(':telefono', $nuevosDatos['telefono'], PDO::PARAM_STR);
-
-
-
-            $stmt->execute();
-            $conexion = null;
-
-            return true;
-        } catch (PDOException $e) {
-            // Manejar cualquier error de la base de datos
-            echo "Error en la base de datos. Detalles: " . $e->getMessage();
-            return false; // Indica error
+        // Vincular los parámetros
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
+        $stmt->bindParam(':email', $nuevosDatos['email'], PDO::PARAM_STR);
+        
+        // Manejo seguro de la contraseña (si es necesario)
+        if (!empty($nuevosDatos['contrasena'])) {
+            // Hash de la nueva contraseña
+            $hashedPassword = password_hash($nuevosDatos['contrasena'], PASSWORD_DEFAULT);
+            $stmt->bindParam(':contrasena', $hashedPassword, PDO::PARAM_STR);
+        } else {
+            // No actualizar la contraseña si no se proporciona una nueva
+            $stmt->bindValue(':contrasena', null, PDO::PARAM_NULL);
         }
+
+        $stmt->bindParam(':direccion', $nuevosDatos['direccion'], PDO::PARAM_STR);
+        $stmt->bindParam(':provincia', $nuevosDatos['provincia'], PDO::PARAM_STR);
+        $stmt->bindParam(':postal', $nuevosDatos['postal'], PDO::PARAM_STR);
+        $stmt->bindParam(':telefono', $nuevosDatos['telefono'], PDO::PARAM_STR);
+
+        $stmt->execute();
+       
+
+        return true; // Indica éxito
+    } catch (PDOException $e) {
+        // Registra el error de manera más específica
+        error_log("Error al actualizar datos del usuario: " . $e->getMessage());
+        return false; // Indica error
     }
+}
+
 
     // Otras funciones del modelo aquí
     public function eliminarUsuario($idUsuario) {
@@ -306,6 +324,7 @@ class Usuario
 
         return $result;
     }
+
     
 }
 

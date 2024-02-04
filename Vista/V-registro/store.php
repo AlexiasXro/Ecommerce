@@ -1,4 +1,3 @@
-/STORE/guarda y almacena los datos de create para poder almacenar en la base de datos
 <?php
 
 require_once('c://xampp/htdocs/ecommerce/Controlador/usuarioCon.php');

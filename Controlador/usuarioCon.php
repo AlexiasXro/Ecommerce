@@ -23,8 +23,7 @@ class UsuarioController {
 
         // Llamar al método insertarUsuario del modelo
         $resultado = $usuarioModel->insertarUsuario($nuevoUsuario);
-
-        // Realizar cualquier otra lógica necesaria (por ejemplo, redirección, mostrar mensajes, etc.)
+        
 
         // Ejemplo de redirección a una página después de la inserción
         if ($resultado) {
@@ -42,7 +41,6 @@ class UsuarioController {
         // Llamar al método para obtener el registro por ID
         $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
 
-        // Verificar si se obtuvo el registro correctamente
         if ($registro) {
             // Puedes devolver los detalles del registro a la vista o realizar otras acciones según tus necesidades
             return $registro;
@@ -59,7 +57,7 @@ class UsuarioController {
 
         // Llamar al método obtenerTodosRegistro del modelo
         $usuarios = $modeloUsuario->obtenerTodosRegistro();
-
+ 
         if ($usuarios !== false) {
             // Aquí puedes hacer algo con los registros obtenidos, por ejemplo, mostrarlos en una vista
             return $usuarios;
@@ -71,23 +69,24 @@ class UsuarioController {
 
     // update: Método para actualizar los datos de un usuario
     public function editarUsuario($idUsuario, $nuevosDatos)
-    {
-        // Crear una instancia del modelo Usuario
-        $usuarioModel = new Usuario();
-    
-        // Llamar al método para obtener el registro por ID
-        $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
-    
-        // Verificar si se obtuvo el registro correctamente
-        if ($registro) {
-            // Utilizar el método público para actualizar los datos
-            $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
-    
-            return $actualizacionExitosa;
-        } else {
-            return false;
-        }
+{
+    // Utilizar la instancia existente del modelo Usuario
+    $usuarioModel = new Usuario();
+
+    // Llamar al método para obtener el registro por ID
+    $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
+
+    // Verificar si se obtuvo el registro correctamente
+    if ($registro) {
+        // Utilizar el método público para actualizar los datos
+        $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
+
+        return $actualizacionExitosa;
+    } else {
+        return false;
     }
+}
+
     // Función para eliminar un usuario
     public function eliminarUsuario($idUsuario) {
         $usuarioModel = new Usuario();
