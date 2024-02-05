@@ -13,7 +13,7 @@ class Producto {
     private $fecha_creacion;
 
     // Constructor
-    public function __construct($id_producto, $nombre, $precio, $descripcion, $imagen_url, $stock, $fecha_creacion) {
+    public function __construct($id_producto = null, $nombre = "", $precio = "", $descripcion = "", $imagen_url = "", $stock = "", $fecha_creacion = null) {
         $this->id_producto = $id_producto;
         $this->nombre = $nombre;
         $this->precio = $precio;
@@ -83,124 +83,140 @@ class Producto {
         return $this->fecha_creacion;
     }
 
-             //Metodo para insertar en la BD
-            public function insertarDatos(){
-                try {
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $stm = $pdo->prepare("INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stm->execute([$this->nombre, $this->descripcion, $this->precio, $this->imagen_url, $this->stock, $this->fecha_creacion]);
-                    return true; // Indica éxito
-                } catch (PDOException $e) {
-                    return false; // Indica error
-                }
-            }
-
-        
-            //Metodo para traer todos los productos de la BD
-            public static function traerTodos() {
-                try {
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $stm = $pdo->prepare("SELECT * FROM productos");
-                    $stm->execute();
-                    return $stm->fetchAll(PDO::FETCH_ASSOC);
-                } catch (Exception $e) {
-                    return "Error al obtener todos los productos: " . $e->getMessage();
-                }
-            }
-        
-            //Metodo para buscar un producto por Nombre
-            public function traerporNom(){
-                try{
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-
-                    $stm = $pdo->prepare("SELECT * FROM productos WHERE nombre LIKE ?");
-                    $stm->execute(["%" . $this->nombre . "%"]);
-                    return $stm->fetchAll();
-                }
-                catch(Exception $e){
-                    return "Error o Nombre inexistente: " . $e->getMessage();
-                }
-            }
-        
-        
-            //Metodo para actualizar un producto
-            public function actualizarP() {
-                try {
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $stm = $pdo->prepare("UPDATE productos SET nombre=?, descripcion=?, precio=?, imagenurl=?, stock=?, fecha_creacion=? WHERE id_producto=?");
-                    $stm->execute([$this->nombre, $this->descripcion, $this->precio, $this->imagen_url, $this->stock, $this->fecha_creacion, $this->id_producto]);
-                    return true; // Indicates success
-                } catch (PDOException $e) {
-                    return "Error al actualizar producto: " . $e->getMessage();
-                }
-            }
+    //Metodo para insertar en la BD
+    public function insertarDatos(Producto $producto)
+    {
+        try {
+            $conexion = Conexion::conectar();
             
-        
-            //Metodo para eliminar un producto
-            public function eliminarP(){
-                try{
-                    $pdo = Conexion::conectar(); 
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, fecha_creacion)
+                                    VALUES( :nombre, :descripcion, :precio, :imagen_url, :stock, :fecha_creacion)";
 
-                    $stm = $pdo->prepare("DELETE FROM productos WHERE id_producto=?");
-                    $stm->execute([$this->id_producto]);
-                    return true;
-                }
-                catch(Exception $e){
-                    return "Error al eliminar producto: " . $e->getMessage();
-                }
-            }
+            $stmt = $conexion->prepare($sql);
 
-            //
-            public static function obtenerPId($id_producto) {
-                try {
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $nombre = $producto->getNombre();
+            $descripcion = $producto->getDescripcion();
+            $precio = $producto->getPrecio();
+            $imagen_url = $producto->getImagenurl();
+            $stock = $producto->getStock();
+            $fecha_creacion = $producto->getFechaCreacion();
+            //vincular los parametros
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':imagen_url', $imagen_url);
+            $stmt->bindParam(':stock', $stock);
+            $stmt->bindParam(':fecha_creacion', $fecha_creacion);
+            $stmt->execute();
 
-                    $stm = $pdo->prepare("SELECT * FROM productos WHERE id_producto = ?");
-                    $stm->execute([$id_producto]);
-                    $producto = $stm->fetch(PDO::FETCH_ASSOC);
-                
-                    if ($producto) {
-                        return $producto;
-                    } else {
-                        return null; // Si no se encuentra el producto, devolvemos null
-                    }
-                } catch (PDOException $e) {
-                    throw new Exception("Error al obtener el producto por ID: " . $e->getMessage());
-                }
-            }
+            return true; // La inserción fue exitosa
+        } catch (PDOException $e) {
+            echo "Error en la inserción: " . $e->getMessage();
+            return false;
+        }
+    }
+    //Metodo para traer un productos de la BD(SHOW)
+    public function obtenerProductoPorId($idProducto)
+    {
+        try {
+            $conexion = Conexion::conectar();
 
-            public static function obtenerDatosProducto($id_producto) {
-                try {
-                    $pdo = Conexion::conectar();
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    
-                    $stm = $pdo->prepare("SELECT * FROM productos WHERE id_producto = ?");
-                    $stm->execute([$id_producto]);
-        
-                    $datosProducto = $stm->fetch(PDO::FETCH_ASSOC) ?: [];
+            $sql = "SELECT * FROM productos WHERE id_producto = :id_producto LIMIT 1";
 
-                    
-        
-                    return $datosProducto;
-                } catch (Exception $e) {
-                    throw new Exception("Error al obtener datos del producto: " . $e->getMessage());
-                }
-            }
+            $stmt = $conexion->prepare($sql);
+
+            // Vincular los parámetros
+            $stmt->bindParam(':id_producto', $idProducto, PDO::PARAM_INT);
+            $stmt->execute();
+            $unProducto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $unProducto;
+        } catch (PDOException $e) {
+            error_log("Error al obtener el registro por ID: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    //Metodo para traer todos los productos de la BD(INDEX)
+    public function obtenerTodosProductos()
+    {
+        try {
+            $conexion = Conexion::conectar();
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "SELECT * FROM productos";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+            $listProducto = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+            return $listProducto;
+        } catch (PDOException $e) {
+            echo "Error al obtener todos los productos: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    //Método para actualizar los datos de un usuario(update)
+    public function actualizarDatos($id, $nuevosDatos)
+    {
+        try {
+            $conexion = Conexion::conectar();
+
+            //consulta SQL
+            $sql = "UPDATE usuarios SET 
+                    nombre = :nombre, 
+                    detalles = :detalles, 
+                    precio = :precio, 
+                    imagen_url = :imagen_url, 
+                    stock = :stock, 
+                    fecha_creacion = :fecha_creacion,  
+                    WHERE id = :id_producto";
+
+            $stmt = $conexion->prepare($sql);
+
+            // Vincular los parámetros
+            $stmt->bindParam(':id_producto', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':detalles', $nuevosDatos['detalles'], PDO::PARAM_STR);
+            $stmt->bindParam(':precio', $nuevosDatos['precio'], PDO::PARAM_INT);
+            $stmt->bindParam(':imagen_url', $nuevosDatos['imagen_url'], PDO::PARAM_STR);
+            $stmt->bindParam(':stock', $nuevosDatos['stock'], PDO::PARAM_INT);
+
+
+            $stmt->execute();
+
+
+            return true;
+        } catch (PDOException $e) {
+            error_log("Error al actualizar datos del producto: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // metodo para eliminar
+    public function eliminarProducto($idProducto)
+    {
+        $conexion = Conexion::conectar(); 
+
+        // Preparar la consulta SQL
+        $query = "DELETE FROM usuarios WHERE id = :id_producto";
+        $statement = $conexion->prepare($query);
+
+        // Vincular parámetros
+        $statement->bindParam(":id", $idProducto, PDO::PARAM_INT);
+
+        // Ejecutar la consulta
+        $result = $statement->execute();
+
+        // Cerrar la conexión
+        $conexion = null;
+
+        return $result;
+    }
 
 
 }
-
-        
-        
-
 
 ?>
