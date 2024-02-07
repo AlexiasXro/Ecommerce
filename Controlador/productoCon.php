@@ -12,7 +12,8 @@ class ProductoCon {
             $datosProducto['descripcion'],
             $datosProducto['imagen_url'],
             $datosProducto['stock'],
-            $datosProducto['postal'],
+            $datosProducto['talle'],
+            $datosProducto['color'],
             null, 
         );
         $resultado = $productoModel->insertarDatos($nuevoProducto);

@@ -4,7 +4,7 @@ require_once 'c://xampp/htdocs/ecommerce/config/Conexion.php';
 
 class Usuario
 {
-    private $id;
+    private $id_usuario;
     private $nombre;
     private $email;
     private $contrasena;
@@ -20,9 +20,9 @@ class Usuario
 
 
     // Constructor
-    public function __construct($id = null, $nombre = "", $email = "", $contrasena = "", $direccion = "", $provincia = "", $postal = "", $telefono = "", $fecha_registro = null, $ultimo_acceso = null, $admin = "")
+    public function __construct($id_usuario = null, $nombre = "", $email = "", $contrasena = "", $direccion = "", $provincia = "", $postal = "", $telefono = "", $fecha_registro = null, $ultimo_acceso = null, $admin = "")
     {
-        $this->id = $id;
+        $this->id_usuario = $id_usuario;
         $this->nombre = $nombre;
         $this->email = $email;
         $this->contrasena = $contrasena;
@@ -40,7 +40,7 @@ class Usuario
 
     public function setIdUsuario($id_usuario)
     {
-        $this->id = $id_usuario;
+        $this->id_usuario = $id_usuario;
     }
 
     public function setNombre($nombre)
@@ -97,7 +97,7 @@ class Usuario
 
     public function getIdUsuario()
     {
-        return $this->id;
+        return $this->id_usuario;
     }
 
     public function getNombre()
@@ -208,13 +208,13 @@ class Usuario
             $conexion = Conexion::conectar();
 
             // Consulta SQL
-            $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
+            $sql = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario LIMIT 1";
 
             // Preparar la declaración
             $stmt = $conexion->prepare($sql);
 
             // Vincular los parámetros
-            $stmt->bindParam(':id', $idRegistro, PDO::PARAM_INT);
+            $stmt->bindParam(':id_usuario', $idRegistro, PDO::PARAM_INT);
 
             $stmt->execute();
 
@@ -254,7 +254,7 @@ class Usuario
 
 
     // update: Método para actualizar los datos de un usuario
-    public function actualizarDatos($id, $nuevosDatos)
+    public function actualizarDatos($id_usuario, $nuevosDatos)
 {
     try {
         $conexion = Conexion::conectar();
@@ -269,12 +269,12 @@ class Usuario
                 provincia = :provincia, 
                 postal = :postal, 
                 telefono = :telefono 
-                WHERE id = :id";
+                WHERE id_usuario = :id_usuario";
 
         $stmt = $conexion->prepare($sql);
 
         // Vincular los parámetros
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(':email', $nuevosDatos['email'], PDO::PARAM_STR);
         
@@ -310,11 +310,11 @@ class Usuario
         $conexion = Conexion::conectar(); // Asegúrate de tener la clase de conexión
 
         // Preparar la consulta SQL
-        $query = "DELETE FROM usuarios WHERE id = :id";
+        $query = "DELETE FROM usuarios WHERE id_usuario = :id_usuario";
         $statement = $conexion->prepare($query);
 
         // Vincular parámetros
-        $statement->bindParam(":id", $idUsuario, PDO::PARAM_INT);
+        $statement->bindParam(":id_usuario", $idUsuario, PDO::PARAM_INT);
 
         // Ejecutar la consulta
         $result = $statement->execute();

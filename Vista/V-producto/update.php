@@ -4,8 +4,8 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/productoCon.php');
 
 // Asegúrate de tener el ID del Producto que deseas editar
-if (isset($_GET['id_producto'])) {
-    $idProducto = $_GET['id_producto'];
+if (isset($_GET['id'])) {
+    $idProducto = $_GET['id'];
     if (!is_numeric($idProducto) || $idProducto <= 0) {
         echo "ID de producto no válido.";
         exit();
@@ -30,6 +30,8 @@ if ($detallesProducto !== false) {
             'precio' => $_POST["precio"],
             'imagen_url' => $_POST["imagen_url"],
             'stock' => $_POST["stock"],
+            'talle' => $_POST["talle"],
+            'color' => $_POST["color"],
         ];
 
         // Llama al método del controlador para editar el Producto

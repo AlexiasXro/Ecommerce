@@ -39,30 +39,30 @@ session_start();
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Producto</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/index.php">Producto</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/index.php">Producto</a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Orden</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/index.php">Orden</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden/index.php">Orden</a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Orden/Producto</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/index.php">Orden/Producto</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden-producto/index.php">Orden/Producto</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden-producto/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
                        
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link   disabled dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pago</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/index.php">Orden/Producto</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/index.php">Orden/Producto</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
                     </ul>

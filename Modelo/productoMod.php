@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../Config/Conexion.php';
+require_once 'c://xampp/htdocs/ecommerce/config/Conexion.php';
 
 
 class Producto {
@@ -10,16 +10,20 @@ class Producto {
     private $descripcion;
     private $imagen_url;
     private $stock;
+    private $talle;
+    private $color;
     private $fecha_creacion;
 
     // Constructor
-    public function __construct($id_producto = null, $nombre = "", $precio = "", $descripcion = "", $imagen_url = "", $stock = "", $fecha_creacion = null) {
+    public function __construct($id_producto = null, $nombre = "", $precio = "", $descripcion = "", $imagen_url = "", $stock = "",$talle = "", $color = "", $fecha_creacion = null) {
         $this->id_producto = $id_producto;
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->descripcion = $descripcion;
         $this->imagen_url = $imagen_url;
         $this->stock = $stock;
+        $this->talle = $talle;
+        $this->color = $color;
         $this->fecha_creacion = $fecha_creacion;
     }
 
@@ -46,7 +50,13 @@ class Producto {
     }
 
     public function setStock($stock) {
-        $this->stock = $stock;
+        $this->stock += $stock;
+    }
+    public function setTalle($talle) {
+        $this->talle = $talle;
+    }
+    public function setColor($color) {
+        $this->talle = $color;
     }
 
     public function setFechaCreacion($fecha_creacion) {
@@ -78,6 +88,12 @@ class Producto {
     public function getStock() {
         return $this->stock;
     }
+    public function getTalle() {
+        return $this->talle;
+    }
+    public function getColor() {
+        return $this->color;
+    }
 
     public function getFechaCreacion() {
         return $this->fecha_creacion;
@@ -89,24 +105,26 @@ class Producto {
         try {
             $conexion = Conexion::conectar();
             
-            $sql = "INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, fecha_creacion)
-                                    VALUES( :nombre, :descripcion, :precio, :imagen_url, :stock, :fecha_creacion)";
+            $sql = "INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, talle, color)
+                                    VALUES( :nombre, :descripcion, :precio, :imagen_url, :stock, :talle, :color)";
 
             $stmt = $conexion->prepare($sql);
 
             $nombre = $producto->getNombre();
             $descripcion = $producto->getDescripcion();
             $precio = $producto->getPrecio();
-            $imagen_url = $producto->getImagenurl();
             $stock = $producto->getStock();
-            $fecha_creacion = $producto->getFechaCreacion();
+            $talle = $producto->getTalle();
+            $color = $producto->getColor();
+            $imagen_url = $producto->getImagenurl();
             //vincular los parametros
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':descripcion', $descripcion);
             $stmt->bindParam(':precio', $precio);
-            $stmt->bindParam(':imagen_url', $imagen_url);
             $stmt->bindParam(':stock', $stock);
-            $stmt->bindParam(':fecha_creacion', $fecha_creacion);
+            $stmt->bindParam(':talle', $talle);
+            $stmt->bindParam(':color', $color);
+            $stmt->bindParam(':imagen_url', $imagen_url);
             $stmt->execute();
 
             return true; // La inserción fue exitosa
@@ -171,7 +189,8 @@ class Producto {
                     precio = :precio, 
                     imagen_url = :imagen_url, 
                     stock = :stock, 
-                    fecha_creacion = :fecha_creacion,  
+                    talle = :talle,
+                    color = :color,  
                     WHERE id = :id_producto";
 
             $stmt = $conexion->prepare($sql);
@@ -181,9 +200,11 @@ class Producto {
             $stmt->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
             $stmt->bindParam(':detalles', $nuevosDatos['detalles'], PDO::PARAM_STR);
             $stmt->bindParam(':precio', $nuevosDatos['precio'], PDO::PARAM_INT);
+            $stmt->bindParam(':precio', $nuevosDatos['precio'], PDO::PARAM_STR); 
+            $stmt->bindParam(':stock', $nuevosDatos['stock'], PDO::PARAM_STR); 
+            $stmt->bindParam(':talle', $nuevosDatos['talle'], PDO::PARAM_STR);  
             $stmt->bindParam(':imagen_url', $nuevosDatos['imagen_url'], PDO::PARAM_STR);
-            $stmt->bindParam(':stock', $nuevosDatos['stock'], PDO::PARAM_INT);
-
+            
 
             $stmt->execute();
 
@@ -201,11 +222,11 @@ class Producto {
         $conexion = Conexion::conectar(); 
 
         // Preparar la consulta SQL
-        $query = "DELETE FROM usuarios WHERE id = :id_producto";
+        $query = "DELETE FROM productos WHERE id_producto = :id_producto";
         $statement = $conexion->prepare($query);
 
         // Vincular parámetros
-        $statement->bindParam(":id", $idProducto, PDO::PARAM_INT);
+        $statement->bindParam(":id_producto", $idProducto, PDO::PARAM_INT);
 
         // Ejecutar la consulta
         $result = $statement->execute();

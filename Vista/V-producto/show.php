@@ -2,8 +2,8 @@
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/productoCon.php');
 
-if (isset($_GET['id_producto'])) {
-    $idProducto = $_GET['id_producto']; // Obtén el ID de la URL
+if (isset($_GET['id'])) {
+    $idProducto = $_GET['id']; // Obtén el ID de la URL
     if (!is_numeric($idProducto) || $idProducto <= 0) {
         echo "ID de producto no válido.";
         exit();
@@ -56,22 +56,26 @@ if (isset($_SESSION['mensaje'])) {
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Precio</th>
-                <th scope="col">Imagen Url</th>
                 <th scope="col">stock</th>
+                <th scope="col">talle</th> 
+                <th scope="col">color</th>
                 <th scope="col">Fecha de creacion</th>
+                <th scope="col">Imagen Url</th>
                 <!--7-->
             </thead>
             <tbody>
                 <?php
                 if ($detallesProductos !== false && is_array($detallesProductos)) {
                     echo "<tr>";
-                    echo "<td>" . $detallesProductos['id'] . "</td>";
+                    echo "<td>" . $detallesProductos['id_producto'] . "</td>";
                     echo "<td>" . $detallesProductos['nombre'] . "</td>";
-                    echo "<td>" . ($detallesProductos['descripcion'] !== false ? $detallesProductos['descripcion'] : 'Vacio') . "</td>";
-                    echo "<td>" . ($detallesProductos['precio'] !== false ? $detallesProductos['precio'] : 'Vacio') . "</td>";
-                    echo "<td>" . ($detallesProductos['imagen_url'] !== false ? $detallesProductos['imagen_url'] : 'Vacio') . "</td>";
-                    echo "<td>" . ($detallesProductos['stock'] !== false ? $detallesProductos['stock'] : 'Vacio') . "</td>";
-                    echo "<td>" . ($detallesProductos['fecha_creacion'] !== false ? $detallesProductos['fecha_creacion'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['descripcion']) ? $detallesProductos['descripcion'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['precio']) ? $detallesProductos['precio'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['stock']) ? $detallesProductos['stock'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['talle']) ? $detallesProductos['talle'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['color']) ? $detallesProductos['color'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio') . "</td>";
+                    echo "<td>" . (isset($detallesProductos['imagen_url']) ? $detallesProductos['imagen_url'] : 'Vacio') . "</td>";
                     echo "</tr>";
                 } else {
                     echo "<tr><td colspan='7'>No hay productos</td></tr>";

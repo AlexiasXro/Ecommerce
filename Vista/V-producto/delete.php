@@ -5,8 +5,8 @@ session_start();
 require_once('c://xampp/htdocs/ecommerce/Controlador/productoCon.php');
 
 
-if (isset($_GET['id_producto'])) {
-    $idProducto = $_GET['id_producto'];
+if (isset($_GET['id'])) {
+    $idProducto = $_GET['id'];
 
     if (!is_numeric($idProducto) || $idProducto <= 0) {
         echo "ID de Producto no válido.";

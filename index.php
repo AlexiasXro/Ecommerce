@@ -8,9 +8,9 @@
 
         <div class="mb-3">
             <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo usuario</a>
-            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo producto</a>
-            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo  orden  </a>
-            <a href="/ecommerce/Vista/V-registro/create.php" class="btn btn-primary">Agregar nuevo orden/producto</a>
+            <a href="/ecommerce/Vista/V-producto/create.php" class="btn btn-primary">Agregar nuevo producto</a>
+            <a href="/ecommerce/Vista/V-orden/create.php" class="btn btn-primary">Agregar nueva  orden  </a>
+            <a href="/ecommerce/Vista/V-/create.php" class="btn btn-primary">Agregar nuevo orden/producto</a>
         </div>
 
 

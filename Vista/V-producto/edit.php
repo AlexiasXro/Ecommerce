@@ -3,8 +3,8 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/productoCon.php');
 
 
-if (isset($_GET['id_producto'])) {
-    $idProducto = $_GET['id_producto'];
+if (isset($_GET['id'])) {
+    $idProducto = $_GET['id'];
 } else {
     echo "ID de Producto no proporcionado.";
     exit();
@@ -20,8 +20,10 @@ if ($detallesProducto !== false) {
             'nombre' => $nombre,
             'precio' => $precio,
             'descripcion' => $descripcion,
-            'imagen_url' => $imagen_url,
+            'imagen_url' => $imagen_url, //relación de aspecto común es 4:3 o 3:2,IMAGEN
             'stock' => ($stock != null) ? $stock : 0,
+            'talle' => $talle,
+            'color' => $color,
         ];
 
         // Llama al método del controlador para editar el producto
@@ -34,70 +36,76 @@ if ($detallesProducto !== false) {
 }
 ?>
 
-<h3>Modificando Producto</h3>
-<form action="update.php?id=<?= $idProducto ?>" method="post" autocomplete="off">
 
-    <div class="pd-3">
-        <a href="index.php" class="btn btn-primary">Regresar</a>
-        <!-- Puedes añadir otros botones según sea necesario -->
-    </div>
-    <div class="mb-3 row">
-    <label for="id" class="col-sm-2 col-form-label">Id</label>
-    <div class="col-sm-10">
-        <input type="text" name="id" class="form-control" id="id" value="<?= $detallesProducto['id_producto'] ?>" readonly>
-    </div>
+<div class="container border p-1 mb-1">
+    <h3>Modificando Producto</h3>
 </div>
-    <div class="mb-3 row">
-        <label for="nombre" class="col-sm-2 col-form-label">Nuevo Nombre:</label>
-        <div class="col-sm-10">
-            <input type="text" name="nombre" class="form-control" id="nombre" value="<?= $detallesUsuario['nombre'] ?>">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Nuevo Email:</label>
-        <div class="col-sm-10">
-            <input type="text" name="email" class="form-control" id="email" value="<?= $detallesUsuario['email'] ?>">
-        </div>
-    </div>
 
-    <div class="mb-3 row">
-        <label for="contrasena" class="col-sm-2 col-form-label">Nueva Contraseña:</label>
-        <div class="col-sm-10">
-            <input type="password" name="contrasena" class="form-control" id="contrasena">
-        </div>
-    </div>
+<div class="container border p-4">
+    <form action="update.php?id=<?= $idProducto ?>" method="post" autocomplete="off">
 
-    <div class="mb-3 row">
-        <label for="direccion" class="col-sm-2 col-form-label">Nueva Dirección:</label>
-        <div class="col-sm-10">
-            <input type="text" name="direccion" class="form-control" id="direccion" value="<?= $detallesUsuario['direccion'] ?>">
-        </div>
-    </div>
+        <div class="pd-3">
+            <a href="index.php" class="btn btn-primary">Regresar</a>
 
-    <div class="mb-3 row">
-        <label for="provincia" class="col-sm-2 col-form-label">Nueva Provincia:</label>
-        <div class="col-sm-10">
-            <input type="text" name="provincia" class="form-control" id="provincia" value="<?= $detallesUsuario['provincia'] ?>">
+            <!-- otros botones -->
+            <hr>
         </div>
-    </div>
+        <div class="mb-3 row">
+            <label for="id" class="col-sm-2 col-form-label fw-bold">Id:</label>
+            <div class="col-sm">
+                <input type="text" name="id" class="form-control form-control-sm fw-bold" id="id" value="<?= $detallesProducto['id_producto'] ?>" readonly>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="text" name="precio" class="form-control" id="precio" step="0.01" pattern="[0-9]+([,\.][0-9]+)?" aria-describedby="precioHelp" required>
+            </div>
+            <div id="precioHelp" class="form-text">Ingresa el precio en formato decimal, por ejemplo: 10.50</div>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <textarea name="descripcion" class="form-control" id="descripcion" rows="3" placeholder="Marca: Material: Características:"></textarea>
+        </div>
 
-    <div class="mb-3 row">
-        <label for="postal" class="col-sm-2 col-form-label">Nuevo Código Postal:</label>
-        <div class="col-sm-10">
-            <input type="text" name="postal" class="form-control" id="postal" value="<?= $detallesUsuario['postal'] ?>">
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" name="stock" class="form-control" id="quantity">
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="talle" class="form-label">Talle</label>
+            <select name="talle" class="form-select" id="talle">
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <!-- más opciones -->
+            </select>
+        </div>
 
-    <div class="mb-3 row">
-        <label for="telefono" class="col-sm-2 col-form-label">Nuevo Teléfono:</label>
-        <div class="col-sm-10">
-            <input type="text" name="telefono" class="form-control" id="telefono" value="<?= $detallesUsuario['telefono'] ?>">
+        <div class="mb-3">
+            <label for="color" class="form-label">Color</label>
+            <select name="color" class="form-select" id="color">
+                <option value="rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="verde">Verde</option>
+                <option value="amarillo">Amarillo</option>
+                <option value="caqui">caqui</option>
+                <!--  más opciones -->
+            </select>
         </div>
-    </div>
-    <!-- Agrega los demás campos aquí -->
-    <input type="submit" class="btn btn-success" value="Actualizar">
-    <a href="show.php?id=<?= $idUsuario ?>" class="btn btn-danger">Cancelar</a>
-</form>
+
+        <div class="mb-3">
+            <label for="website" class="form-label">Imagen Url</label>
+            <input type="url" name="imagen_url" class="form-control" id="website">
+        </div>
+        <button type="submit" class="btn btn-primary" href="show.php">Guardar</button>
+        <a class="btn btn-danger" href="index.php">Cancelar</a>
+    </form>
+</div>
+
 
 <?php
 // Incluye el pie de página
