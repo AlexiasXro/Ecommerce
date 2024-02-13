@@ -24,7 +24,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
         </div>
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripcion</label>
-            <textarea name="descripcion" class="form-control" id="descripcion" rows="3" placeholder="Marca: Material: Características:"></textarea>
+            <textarea name="descripcion" class="form-control" id="descripcion" rows="3" placeholder="Marca, Material, Características:"></textarea>
         </div>
 
         <div class="mb-3">
@@ -58,6 +58,10 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
         <div class="mb-3">
             <label for="website" class="form-label">Imagen Url</label>
             <input type="url" name="imagen_url" class="form-control" id="website">
+        </div>
+        <div class="mb-3">
+            <label for="fileInput" class="form-label">Seleccionar imagen</label>
+            <input type="file" class="form-control-file" id="fileInput">
         </div>
         <button type="submit" class="btn btn-primary" href="show.php">Guardar</button>
         <a class="btn btn-danger" href="index.php">Cancelar</a>

@@ -1,3 +1,4 @@
+
 <?php
 
 // Incluye el encabezado y el menú
@@ -10,13 +11,14 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
     <form action="store.php" method="POST" autocomplete="off">
         <div class="mb-3">
             <label for="id_usuario" class="form-label">ID de Usuario</label>
-            <input type="text" class="form-control" id="id_usuario" name="id_usuario" readonly placeholder="Automático">
+            <input type="text" class="form-control" id="id_usuario" name="id_usuario">
         </div>
 
         <div class="mb-3">
             <label for="id_producto" class="form-label">ID de Producto</label>
-            <input type="text" class="form-control" id="id_producto" name="id_producto" readonly placeholder="Automático">
+            <input type="text" class="form-control" id="id_producto" name="id_producto">
         </div>
+
 
         <div class="mb-3">
             <label for="estado" class="form-label">Estado</label>

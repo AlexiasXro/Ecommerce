@@ -74,6 +74,28 @@ class ProductoCon {
         return $result;
     }
 
+    //P A G I N A D O
+
+    public function mostrarProductos($pagina) {
+        // Llamar a la función obtenerProductosPaginados del modelo
+        $productosModel = new Producto(); // Suponiendo que tengas un modelo llamado ProductosModel
+        $productos = $productosModel->obtenerProductosPaginados($pagina);
+        
+        // Aquí podrías pasar los datos de los productos a una vista para renderizarlos en la interfaz de usuario
+        // Por simplicidad, asumiré que simplemente los imprimirás aquí
+        
+        if ($productos !== false) {
+            foreach ($productos as $producto) {
+                echo $producto['nombre'] . '<br>'; // Suponiendo que el nombre del producto se encuentra en la columna 'nombre'
+                // Puedes imprimir más detalles del producto según tu estructura de datos
+            }
+        } else {
+            echo "Ha ocurrido un error al cargar los productos.";
+        }
+        
+        // También podrías incluir lógica para mostrar los controles de paginación en la interfaz de usuario
+        // Por ejemplo, enlaces para ir a la página siguiente, anterior, etc.
+    }
 
 }
 

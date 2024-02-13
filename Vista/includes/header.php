@@ -41,6 +41,7 @@ session_start();
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/index.php">Producto</a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/create.php">Categoria </a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" data-bs-theme="dark">
@@ -50,14 +51,18 @@ session_start();
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
+                        
+                       
                         <li class="nav-item dropdown" data-bs-theme="dark">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Orden/Producto</a>
+                            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Carrito</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden-producto/index.php">Orden/Producto</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden-producto/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/index.php">Carrito</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Carrito </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Orden </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Agregar carrito </a></li>
                             </ul>
                         </li>
-                       
+
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link   disabled dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pago</a>
                             <ul class="dropdown-menu">

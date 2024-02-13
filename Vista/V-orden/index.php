@@ -45,34 +45,34 @@ if (isset($_SESSION['mensaje'])) {
                         <td><?= $orden['estado'] ?></td>
                         <td><?= $orden['fecha_creacion'] ?></td>
                         <td colspan="3">
-                            a href='show.php?id=<?= $orden['id'] ?>' class='btn btn-primary m-1'>Ver</a>
+                            <a href='show.php?id=<?= $orden['id'] ?>' class='btn btn-primary m-1'>Ver</a>
                             <a href='edit.php?id=<?= $orden['id'] ?>' class='btn btn-success m-1'>Actualizar</a>
                             <!-- Button trigger modal -->
                             <a href='delete.php?id=<?= $orden['id'] ?>' class='btn btn-danger m-1' data-bs-toggle="modal" data-bs-target="#exampleModalIndex">Eliminar</a>
                         </td>
-                        <!-- Modal -->
-                    <tr class="modal fade" id="exampleModalIndex" tabindex="-1" aria-labelledby="exampleModalLabelIndex" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="uniqueModalLabel">¿Desea eliminar la orden?</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Una vez eliminado no se podrá recuperar la orden.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                                    <a href="delete.php?id=<?= $orden['id'] ?>" class="btn btn-danger">Eliminar</a>
+                                <!-- Modal -->
+                            <tr class="modal fade" id="exampleModalIndex" tabindex="-1" aria-labelledby="exampleModalLabelIndex" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="uniqueModalLabel">¿Desea eliminar la orden?</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Una vez eliminado no se podrá recuperar la orden.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+                                            <a href="delete.php?id=<?= $orden['id'] ?>" class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </tr>
+                            </tr>
                 <?php endforeach; ?>
             <?php else : ?>
                 <tr>
-                    <td colspan='6' class="text-center">No hay ordenes</td>
+                    <td colspan='5' class="text-center">No hay ordenes</td>
                 </tr>
             <?php endif; ?>
         </tbody>

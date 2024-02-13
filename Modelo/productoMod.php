@@ -104,6 +104,9 @@ class Producto {
     {
         try {
             $conexion = Conexion::conectar();
+            $rutaBase = 'ecommerce/Vista/public/producto-img/';
+            $nombreImagen = "1.png"; // Nombre de la imagen
+            $rutaCompleta = $rutaBase . $nombreImagen;
             
             $sql = "INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, talle, color)
                                     VALUES( :nombre, :descripcion, :precio, :imagen_url, :stock, :talle, :color)";
@@ -116,7 +119,7 @@ class Producto {
             $stock = $producto->getStock();
             $talle = $producto->getTalle();
             $color = $producto->getColor();
-            $imagen_url = $producto->getImagenurl();
+            $imagen_url = $rutaCompleta;
             //vincular los parametros
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':descripcion', $descripcion);
@@ -235,6 +238,30 @@ class Producto {
         $conexion = null;
 
         return $result;
+    }
+
+    //PAGINADO 8productos
+    public function obtenerProductosPaginados($pagina)
+    {
+        try {
+            $conexion = Conexion::conectar();
+            $porPagina = 8; // Número de productos por página
+            $inicio = ($pagina - 1) * $porPagina;
+
+            $sql = "SELECT * FROM productos LIMIT :inicio, :porPagina";
+
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(':inicio', $inicio, PDO::PARAM_INT);
+            $stmt->bindParam(':porPagina', $porPagina, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $productos;
+        } catch (PDOException $e) {
+            error_log("Error al obtener los productos paginados: " . $e->getMessage());
+            return false;
+        }
     }
 
 

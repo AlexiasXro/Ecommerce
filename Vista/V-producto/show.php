@@ -2,6 +2,7 @@
 require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
 require_once('c://xampp/htdocs/ecommerce/Controlador/productoCon.php');
 
+
 if (isset($_GET['id'])) {
     $idProducto = $_GET['id']; // Obtén el ID de la URL
     if (!is_numeric($idProducto) || $idProducto <= 0) {
@@ -18,7 +19,7 @@ $detallesProductos = $productoCon->mostrarDetallesProducto($idProducto);
 
 if (isset($_SESSION['mensaje'])) {
     echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']); 
+    unset($_SESSION['mensaje']);
 }
 ?>
 <div>
@@ -57,7 +58,7 @@ if (isset($_SESSION['mensaje'])) {
                 <th scope="col">Descripcion</th>
                 <th scope="col">Precio</th>
                 <th scope="col">stock</th>
-                <th scope="col">talle</th> 
+                <th scope="col">talle</th>
                 <th scope="col">color</th>
                 <th scope="col">Fecha de creacion</th>
                 <th scope="col">Imagen Url</th>
@@ -75,8 +76,13 @@ if (isset($_SESSION['mensaje'])) {
                     echo "<td>" . (isset($detallesProductos['talle']) ? $detallesProductos['talle'] : 'Vacio') . "</td>";
                     echo "<td>" . (isset($detallesProductos['color']) ? $detallesProductos['color'] : 'Vacio') . "</td>";
                     echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['imagen_url']) ? $detallesProductos['imagen_url'] : 'Vacio') . "</td>";
-                    echo "</tr>";
+                    echo "<td>"; // Abre la celda de la imagen
+                    if (isset($detallesProductos['imagen_url'])) {
+                        echo "<img src='" . $detallesProductos['imagen_url'] . "' alt='Imagen del producto'>";
+                    } else {
+                        echo "No hay imagen disponible";
+                    }
+                    echo "</td>"; // Cierra la celda de la imagen
                 } else {
                     echo "<tr><td colspan='7'>No hay productos</td></tr>";
                 }
