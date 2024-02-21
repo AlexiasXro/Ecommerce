@@ -1,6 +1,17 @@
 <?php
-ob_start();
-session_start(); 
+ob_start();//para activar el almacenamiento en búfer de salida. Esto evitará que cualquier salida se envíe al navegador antes de que se llame a header()
+
+// Iniciar sesión de mensajes si no está iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Mostrar mensajes si existen
+if (isset($_SESSION['mensaje'])) {
+    echo "<div class='alert alert-danger'>{$_SESSION['mensaje']}</div>";
+    // Cerrar la sesión de mensajes después de mostrarlos
+    unset($_SESSION['mensaje']);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,7 +34,7 @@ session_start();
     <div class="container-fluid bg-dark  mb-1">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/ecommerce/index.php">Inicio</a>
+                <a class="navbar-brand" href="/ecommerce/admin.php">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,7 +67,7 @@ session_start();
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Carrito</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/index.php">Carrito</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-carrito/index.php">Carrito</a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Carrito </a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Orden </a></li>
                                 <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Agregar carrito </a></li>
@@ -82,7 +93,9 @@ session_start();
                 </div>
             </form>
             </div>
-
+            <div>
+                <h3>Administrador</h3>
+            </div>
             <!--Reloj-->
 
             </div>

@@ -36,13 +36,13 @@ if (isset($_SESSION['mensaje'])) {
             <?php if (is_array($usuarios) && !empty($usuarios)) : ?>
                 <?php foreach ($usuarios as $usuario) : ?>
                     <tr>
-                        <td><?= $usuario['id'] ?></td>
+                        <td><?= $usuario['id_usuario'] ?></td>
                         <td><?= $usuario['nombre'] ?></td>
                         <td><?= ($usuario['email'] !== false ? $usuario['email'] : 'Vacio') ?></td>
                         
                         <td colspan="3">
-                                <a href='show.php?id=<?= $usuario['id'] ?>' class='btn btn-primary m-1'>Ver</a>
-                                <a href='edit.php?id=<?= $usuario['id'] ?>' class='btn btn-success m-1'>Actualizar</a>
+                                <a href='show.php?id=<?= $usuario['id_usuario'] ?>' class='btn btn-primary m-1'>Ver</a>
+                                <a href='edit.php?id=<?= $usuario['id_usuario'] ?>' class='btn btn-success m-1'>Actualizar</a>
                                 <!-- Button trigger modal -->
                                 <a href='delete.php?id=<?= $usuario['id'] ?>' class='btn btn-danger m-1' data-bs-toggle="modal" data-bs-target="#exampleModalIndex">Eliminar</a>
                         </td>
@@ -60,7 +60,7 @@ if (isset($_SESSION['mensaje'])) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                                        <a href="delete.php?id=<?= $usuario['id'] ?>" class="btn btn-danger">Eliminar</a>
+                                        <a href="delete.php?id=<?= $usuario['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
 
                                     </div>
                                 </div>

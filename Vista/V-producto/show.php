@@ -75,13 +75,8 @@ if (isset($_SESSION['mensaje'])) {
                     echo "<td>" . (isset($detallesProductos['stock']) ? $detallesProductos['stock'] : 'Vacio') . "</td>";
                     echo "<td>" . (isset($detallesProductos['talle']) ? $detallesProductos['talle'] : 'Vacio') . "</td>";
                     echo "<td>" . (isset($detallesProductos['color']) ? $detallesProductos['color'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio') . "</td>";
-                    echo "<td>"; // Abre la celda de la imagen
-                    if (isset($detallesProductos['imagen_url'])) {
-                        echo "<img src='" . $detallesProductos['imagen_url'] . "' alt='Imagen del producto'>";
-                    } else {
-                        echo "No hay imagen disponible";
-                    }
+                    echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio');
+                    echo "<td>" . (isset($detallesProductos['foto']) ? $detallesProductos['foto'] : 'Vacio') . "</td>";
                     echo "</td>"; // Cierra la celda de la imagen
                 } else {
                     echo "<tr><td colspan='7'>No hay productos</td></tr>";

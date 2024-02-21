@@ -49,12 +49,12 @@ if ($detallesUsuario !== false) {
     
     <div class="pd-3">
         <a href="index.php" class="btn btn-primary">Regresar</a>
-        <!-- Puedes añadir otros botones según sea necesario -->
+        <!-- new -->
     </div>
     <div class="mb-3 row">
         <label for="id" class="col-sm-2 col-form-label">Id</label>
         <div class="col-sm-10">
-            <input type="text" name="id" class="form-control" id="id" value="<?= $detallesUsuario['id'] ?>">
+            <input type="text" name="id_usuario" class="form-control" id="id" value="<?= $detallesUsuario['id_usuario'] ?>">
         </div>
     </div>
     <div class="mb-3 row">

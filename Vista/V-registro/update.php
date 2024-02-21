@@ -36,16 +36,14 @@ if ($detallesUsuario !== false) {
 
         // Llama al método del controlador para editar el usuario
         $actualizacionExitosa = $usuarioController->editarUsuario($idUsuario, $nuevosDatos);
-
         if ($actualizacionExitosa) {
-        // Establece un mensaje de éxito 
-        $_SESSION['mensaje'] = 'Usuario actualizado exitosamente.';
-        header("Location: show.php?id=" . $idUsuario);
-        exit(); 
-    } else {
-        // Establece un mensaje de error
-        $_SESSION['mensaje'] = 'Error al actualizar los datos.';
+            header("Location: show.php?id=" . $idUsuario); // Redirige a la página de detalles del usuario
+            exit();
+        }
     }
 }
-}
+
+// Si llegamos aquí, hubo un error durante la actualización o al procesar la solicitud
+header("Location: error.php"); // Redirige a una página de error genérica
+exit();
 ?>

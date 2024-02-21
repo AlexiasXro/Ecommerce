@@ -63,6 +63,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/includes/header.php');
             <label for="fileInput" class="form-label">Seleccionar imagen</label>
             <input type="file" class="form-control-file" id="fileInput">
         </div>
+        
         <button type="submit" class="btn btn-primary" href="show.php">Guardar</button>
         <a class="btn btn-danger" href="index.php">Cancelar</a>
     </form>

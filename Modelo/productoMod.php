@@ -8,19 +8,19 @@ class Producto {
     private $nombre;
     private $precio;
     private $descripcion;
-    private $imagen_url;
+    private $foto;
     private $stock;
     private $talle;
     private $color;
     private $fecha_creacion;
 
     // Constructor
-    public function __construct($id_producto = null, $nombre = "", $precio = "", $descripcion = "", $imagen_url = "", $stock = "",$talle = "", $color = "", $fecha_creacion = null) {
+    public function __construct($id_producto = null, $nombre = "", $precio = "", $descripcion = "", $foto = "", $stock = "",$talle = "", $color = "", $fecha_creacion = null) {
         $this->id_producto = $id_producto;
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->descripcion = $descripcion;
-        $this->imagen_url = $imagen_url;
+        $this->foto = $foto;
         $this->stock = $stock;
         $this->talle = $talle;
         $this->color = $color;
@@ -45,8 +45,8 @@ class Producto {
         $this->descripcion = $descripcion;
     }
 
-    public function setImagenUrl($imagen_url) {
-        $this->imagen_url = $imagen_url;
+    public function setFoto($foto) {
+        $this->foto = $foto;
     }
 
     public function setStock($stock) {
@@ -81,8 +81,8 @@ class Producto {
         return $this->descripcion;
     }
 
-    public function getImagenUrl() {
-        return $this->imagen_url;
+    public function getFoto() {
+        return $this->foto;
     }
 
     public function getStock() {
@@ -108,8 +108,8 @@ class Producto {
             $nombreImagen = "1.png"; // Nombre de la imagen
             $rutaCompleta = $rutaBase . $nombreImagen;
             
-            $sql = "INSERT INTO productos (nombre, descripcion, precio, imagenurl, stock, talle, color)
-                                    VALUES( :nombre, :descripcion, :precio, :imagen_url, :stock, :talle, :color)";
+            $sql = "INSERT INTO productos (nombre, descripcion, precio, foto, stock, talle, color)
+                                    VALUES( :nombre, :descripcion, :precio, :foto, :stock, :talle, :color)";
 
             $stmt = $conexion->prepare($sql);
 
@@ -119,7 +119,7 @@ class Producto {
             $stock = $producto->getStock();
             $talle = $producto->getTalle();
             $color = $producto->getColor();
-            $imagen_url = $rutaCompleta;
+            $foto = $rutaCompleta;
             //vincular los parametros
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':descripcion', $descripcion);
@@ -127,7 +127,7 @@ class Producto {
             $stmt->bindParam(':stock', $stock);
             $stmt->bindParam(':talle', $talle);
             $stmt->bindParam(':color', $color);
-            $stmt->bindParam(':imagen_url', $imagen_url);
+            $stmt->bindParam(':foto', $foto);
             $stmt->execute();
 
             return true; // La inserción fue exitosa
@@ -190,7 +190,7 @@ class Producto {
                     nombre = :nombre, 
                     detalles = :detalles, 
                     precio = :precio, 
-                    imagen_url = :imagen_url, 
+                    foto = :foto, 
                     stock = :stock, 
                     talle = :talle,
                     color = :color,  
@@ -206,7 +206,7 @@ class Producto {
             $stmt->bindParam(':precio', $nuevosDatos['precio'], PDO::PARAM_STR); 
             $stmt->bindParam(':stock', $nuevosDatos['stock'], PDO::PARAM_STR); 
             $stmt->bindParam(':talle', $nuevosDatos['talle'], PDO::PARAM_STR);  
-            $stmt->bindParam(':imagen_url', $nuevosDatos['imagen_url'], PDO::PARAM_STR);
+            $stmt->bindParam(':foto', $nuevosDatos['foto'], PDO::PARAM_STR);
             
 
             $stmt->execute();

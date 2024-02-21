@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
     $talle = $_POST['talle'];
     $color = $_POST['color'];
-    $imagen_url = $_POST['imagen_url'];
+    $foto = $_POST['foto'];
 
     // Crear un array con los datos
     $datosProducto = [
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'stock' => $stock,
         'talle' => $talle,
         'color' => $color,
-        'imagen_url' => $imagen_url,
+        'foto' => $foto,
         
     ];
 

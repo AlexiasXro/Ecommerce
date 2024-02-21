@@ -2,7 +2,7 @@
 // Inicia la sesión
 session_start();
 
-require_once('<link rel="stylesheet" href="./ecommerce/Vista/includes/public/style.css">');
+require_once('c://xampp/htdocs/ecommerce/Controlador/usuarioCon.php');
 
 // Asegúrate de tener el ID del usuario que deseas eliminar
 if (isset($_GET['id'])) {

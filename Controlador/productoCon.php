@@ -10,7 +10,7 @@ class ProductoCon {
             $datosProducto['nombre'],
             $datosProducto['precio'],
             $datosProducto['descripcion'],
-            $datosProducto['imagen_url'],
+            $datosProducto['foto'],
             $datosProducto['stock'],
             $datosProducto['talle'],
             $datosProducto['color'],
@@ -19,9 +19,11 @@ class ProductoCon {
         $resultado = $productoModel->insertarDatos($nuevoProducto);
 
         if ($resultado) {
+            $_SESSION['mensaje'] = "El nuevo producto se registró correctamente.";
             header("Location: /ecommerce/Vista/V-producto/index.php");
             exit();
         } else {
+            $_SESSION['mensaje'] = "Error al registrar el nuevo producto.";
             echo "Error al registrar el nuevo producto.";
         }
     }

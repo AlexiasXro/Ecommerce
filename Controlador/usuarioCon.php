@@ -27,10 +27,13 @@ class UsuarioController {
 
         // Ejemplo de redirección a una página después de la inserción
         if ($resultado) {
+            $_SESSION['mensaje'] = "El usuario se registró exitosamente.";
             header("Location: /ecommerce/Vista/V-registro/index.php");
             exit();
         } else {
-            echo "Error al registrar el nuevo usuario.";
+            $_SESSION['mensaje'] = "Error al registrar el nuevo usuario.";
+            header("Location: /ecommerce/Vista/V-registro/index.php");
+            exit();
         }
     }
     //SHOW
@@ -42,10 +45,12 @@ class UsuarioController {
         $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
 
         if ($registro) {
-            // Puedes devolver los detalles del registro a la vista o realizar otras acciones según tus necesidades
+            
             return $registro;
         } else {
             return false;
+            $_SESSION['mensaje'] = "El usuario no existe.";
+            exit();
         }
     }
 
@@ -59,10 +64,10 @@ class UsuarioController {
         $usuarios = $modeloUsuario->obtenerTodosRegistro();
  
         if ($usuarios !== false) {
-            // Aquí puedes hacer algo con los registros obtenidos, por ejemplo, mostrarlos en una vista
+            
             return $usuarios;
         } else {
-            return "Error al obtener todos los usuarios.";
+            $_SESSION['mensaje'] = "Error al obtener todos los usuarios.";
         }
     }
 
@@ -70,10 +75,7 @@ class UsuarioController {
     // update: Método para actualizar los datos de un usuario
     public function editarUsuario($idUsuario, $nuevosDatos)
 {
-    // Utilizar la instancia existente del modelo Usuario
     $usuarioModel = new Usuario();
-
-    // Llamar al método para obtener el registro por ID
     $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
 
     // Verificar si se obtuvo el registro correctamente
@@ -81,23 +83,37 @@ class UsuarioController {
         // Utilizar el método público para actualizar los datos
         $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
 
+        // Verificar si la actualización fue exitosa
+        if ($actualizacionExitosa) {
+            $_SESSION['mensaje'] = "Los datos del usuario se actualizaron correctamente.";
+        } else {
+            $_SESSION['mensaje'] = "Error al actualizar los datos del usuario.";
+        }
+
         return $actualizacionExitosa;
     } else {
+        // Si no se encuentra el usuario, establecer un mensaje de error en la sesión
+        $_SESSION['mensaje'] = "El usuario no existe.";
         return false;
     }
 }
+
 
     // Función para eliminar un usuario
     public function eliminarUsuario($idUsuario) {
         $usuarioModel = new Usuario();
         $result = $usuarioModel->eliminarUsuario($idUsuario);
 
-        // Puedes agregar lógica adicional según el resultado de la eliminación
-
-        return $result;
+       // Verificar si la eliminación fue exitosa
+       if ($result) {
+        
+        $_SESSION['mensaje'] = "El usuario se eliminó correctamente.";
+    } else {
+        
+        $_SESSION['mensaje'] = "Error al eliminar el usuario.";
     }
-
-
+    return $result;
+}
 }
 
 ?>

@@ -22,16 +22,13 @@ $usuarioController = new UsuarioController();
 // Llamar a la función para obtener los detalles del usuario
 $detallesUsuario = $usuarioController->mostrarDetallesUsuario($idUsuario);
 
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']); 
-}
+
 ?>
 <div>
     <h3>Detalles del Registro</h3>
     <div class="pd-3">
         <a href="index.php" class="btn btn-primary">Regresar</a>
-        <a href='edit.php?id=<?= $detallesUsuario['id'] ?>' class='btn btn-success'>Actualizar</a>
+        <a href='edit.php?id=<?= $detallesUsuario['id_usuario'] ?>' class='btn btn-success'>Actualizar</a>
         <!-- Button trigger modal -->
         <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalShow">Eliminar</a>
 
@@ -48,7 +45,7 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
-                        <a href="delete.php?id=<?= $detallesUsuario['id'] ?>" class="btn btn-danger">Eliminar</a>
+                        <a href="delete.php?id=<?= $detallesUsuario['id_usuario'] ?>" class="btn btn-danger">Eliminar</a>
 
                     </div>
                 </div>
@@ -74,7 +71,7 @@ if (isset($_SESSION['mensaje'])) {
                 <?php
                 if ($detallesUsuario !== false && is_array($detallesUsuario)) {
                     echo "<tr>";
-                    echo "<td>" . $detallesUsuario['id'] . "</td>";
+                    echo "<td>" . $detallesUsuario['id_usuario'] . "</td>";
                     echo "<td>" . $detallesUsuario['nombre'] . "</td>";
                     echo "<td>" . ($detallesUsuario['email'] !== false ? $detallesUsuario['email'] : 'Vacio') . "</td>";
                     echo "<td>" . ($detallesUsuario['contrasena'] !== false ? $detallesUsuario['contrasena'] : 'Vacio') . "</td>";

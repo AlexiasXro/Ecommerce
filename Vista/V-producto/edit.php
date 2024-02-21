@@ -20,7 +20,7 @@ if ($detallesProducto !== false) {
             'nombre' => $nombre,
             'precio' => $precio,
             'descripcion' => $descripcion,
-            'imagen_url' => $imagen_url, //relación de aspecto común es 4:3 o 3:2,IMAGEN
+            'foto' => $foto, //relación de aspecto común es 4:3 o 3:2,IMAGEN
             'stock' => ($stock != null) ? $stock : 0,
             'talle' => $talle,
             'color' => $color,
@@ -95,7 +95,7 @@ if ($detallesProducto !== false) {
 
         <div class="mb-3">
             <label for="website" class="form-label">Imagen Url</label>
-            <input type="url" name="imagen_url" class="form-control" id="website">
+            <input type="url" name="foto" class="form-control" id="website">
         </div>
         <button type="submit" class="btn btn-primary" href="show.php">Guardar</button>
         <a class="btn btn-danger" href="index.php">Cancelar</a>

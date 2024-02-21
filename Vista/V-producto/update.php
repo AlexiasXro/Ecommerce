@@ -28,7 +28,7 @@ if ($detallesProducto !== false) {
             'nombre' => $_POST["nombre"],
             'descripcion' => $_POST["descripcion"],
             'precio' => $_POST["precio"],
-            'imagen_url' => $_POST["imagen_url"],
+            'foto' => $_POST["foto"],
             'stock' => $_POST["stock"],
             'talle' => $_POST["talle"],
             'color' => $_POST["color"],
