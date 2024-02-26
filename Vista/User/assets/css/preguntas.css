@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
+/*font-family: 'Kumbh Sans', sans-serif;*/
+
+.background-radial-gradient {
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(219, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+}
+
+.faq-section {
+    color: #fff;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.faq-content {
+    max-width: 800px;
+    padding: 20px;
+    text-align:left;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    margin-bottom: 10px;
+}
+
+.faq-content h2, .faq-content h4 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.enlace {
+    text-decoration: none; /* Quitar subrayado */
+    font-weight: bold; /* Hacer la letra negrita */
+    color: #6291f59f;
+    transition: color 0.3s ease-in-out; 
+}
+.enlace:hover {
+    text-decoration: underline; 
+    color: #ffa60081; /* Cambiar el color del enlace al pasar el cursor sobre él */
+}
+
+/*carta historia*/
+.card {
+    background: linear-gradient(rgba(237, 235, 235, 0.061), rgba(255, 255, 255, 0.16)); /* Degradado blanco transparente */
+    border: none; 
+    max-width: 300px;
+    color: #fff;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+

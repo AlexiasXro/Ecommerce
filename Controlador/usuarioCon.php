@@ -28,11 +28,11 @@ class UsuarioController {
         // Ejemplo de redirección a una página después de la inserción
         if ($resultado) {
             $_SESSION['mensaje'] = "El usuario se registró exitosamente.";
-            header("Location: /ecommerce/Vista/V-registro/index.php");
+            header("Location: /ecommerce/Vista/Admin/V-registro/index.php");
             exit();
         } else {
             $_SESSION['mensaje'] = "Error al registrar el nuevo usuario.";
-            header("Location: /ecommerce/Vista/V-registro/index.php");
+            header("Location: /ecommerce/Vista/Admin/V-registro/index.php");
             exit();
         }
     }
@@ -114,6 +114,31 @@ class UsuarioController {
     }
     return $result;
 }
+
+    public function verificarCredenciales($email, $contrasena) {
+        
+        $usuarioModelo = new Usuario();
+        $usuario = $usuarioModelo->Credenciales($email, $contrasena);
+       
+        if ($usuario) {
+            if ($usuario['admin'] == 1) {
+                // Usuario es administrador, redirigir a admin.php
+                header('Location: /ecommerce/admin.php');
+                exit;
+            } else {
+                // Usuario no es administrador, redirigir a otra página (por ejemplo, inicio.php)
+                header('Location:  /ecommerce/index.html');
+                exit;
+            }
+        } else {
+            header('Location: inicio.php?error=Credenciales inválidas. Por favor, inténtelo de nuevo.');
+            exit;
+        }
+        
+    }
+    
 }
+
+
 
 ?>
