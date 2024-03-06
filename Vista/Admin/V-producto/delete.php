@@ -1,6 +1,4 @@
 <?php
-// Inicia la sesión
-session_start();
 
 require_once('c://xampp/htdocs/ecommerce/Vista/Admin/includes/header.php');;
 
@@ -23,9 +21,9 @@ $productoCon = new ProductoCon();
 $eliminacionExitosa = $productoCon->eliminarProducto($idProducto);
 
 if ($eliminacionExitosa) {
-    $_SESSION['mensaje'] = 'Producto eliminado exitosamente.';
+    echo '<div class="alert alert-danger" role="alert">Producto eliminado exitosamente.</div>';
 } else {
-    $_SESSION['mensaje'] = 'Error al eliminar el Producto.';
+    echo '<div class="alert alert-danger" role="alert">Error al eliminar el Producto.</div>';
 }
 header("Location: index.php");
 exit();

@@ -9,13 +9,6 @@ $usuarioController = new UsuarioController();
 $usuarios = $usuarioController->listarUsuarios();
 
 
-
-// Mostrar mensaje de éxito
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']);  // Limpiar la variable de sesión
-}
-
 ?>
 
 <h3>Lista de Usuarios</h3>

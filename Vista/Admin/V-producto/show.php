@@ -17,10 +17,6 @@ if (isset($_GET['id'])) {
 $productoCon = new ProductoCon();
 $detallesProductos = $productoCon->mostrarDetallesProducto($idProducto);
 
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']);
-}
 ?>
 <div>
     <h3>Detalles de Producto</h3>

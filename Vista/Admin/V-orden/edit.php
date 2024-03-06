@@ -38,7 +38,7 @@ if ($detallesUsuario !== false) {
         $actualizacionExitosa = $usuarioController->editarUsuario($idUsuario, $nuevosDatos);
 
         if (!$actualizacionExitosa) {
-            echo "Error al actualizar los datos. Detalles: No hay detalles disponibles.";
+            echo "Error al actualizar los datos.";
         }
     }
 }

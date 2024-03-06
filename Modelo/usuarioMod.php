@@ -6,7 +6,7 @@ class Usuario
 {
     private $id_usuario;
     private $nombre;
-    private $email;
+    private $email; //username
     private $contrasena;
     private $direccion;
     private $provincia;
@@ -156,14 +156,14 @@ class Usuario
         try {
             // Establecer la conexión
             $conexion = Conexion::conectar();
-           
+
 
             // Construir la consulta SQL
             $sql = "INSERT INTO usuarios (nombre, email, contrasena, direccion, provincia, postal, telefono, fecha_registro, ultimo_acceso, admin)
                                     VALUES (:nombre, :email, :contrasena, :direccion, :provincia, :postal, :telefono, :fecha_registro, :ultimo_acceso, :admin)";
 
             // Preparar la declaración
-            $statement = $conexion->prepare($sql);
+            $stm = $conexion->prepare($sql);
 
             // Crear variables temporales
             $nombre = $usuario->getNombre();
@@ -179,20 +179,20 @@ class Usuario
             $admin = $usuario->isAdmin();
 
             // Vincular los parámetros
-            $statement->bindParam(':nombre', $nombre);
-            $statement->bindParam(':email', $email);
-            $statement->bindParam(':contrasena', $contrasena);
-            $statement->bindParam(':direccion', $direccion);
-            $statement->bindParam(':provincia', $provincia);
-            $statement->bindParam(':postal', $postal);
-            $statement->bindParam(':telefono', $telefono);
-            $statement->bindParam(':fecha_registro', $fecha_registro);
-            $statement->bindParam(':ultimo_acceso', $ultimo_acceso, PDO::PARAM_NULL);
-            $statement->bindParam(':admin', $admin);
+            $stm->bindParam(':nombre', $nombre);
+            $stm->bindParam(':email', $email);
+            $stm->bindParam(':contrasena', $contrasena);
+            $stm->bindParam(':direccion', $direccion);
+            $stm->bindParam(':provincia', $provincia);
+            $stm->bindParam(':postal', $postal);
+            $stm->bindParam(':telefono', $telefono);
+            $stm->bindParam(':fecha_registro', $fecha_registro);
+            $stm->bindParam(':ultimo_acceso', $ultimo_acceso, PDO::PARAM_NULL);
+            $stm->bindParam(':admin', $admin);
 
 
             // Ejecutar la consulta
-            $statement->execute();
+            $stm->execute();
 
             return true; // La inserción fue exitosa
         } catch (PDOException $e) {
@@ -211,15 +211,15 @@ class Usuario
             $sql = "SELECT * FROM usuarios WHERE id_usuario = :id_usuario LIMIT 1";
 
             // Preparar la declaración
-            $statement = $conexion->prepare($sql);
+            $stm = $conexion->prepare($sql);
 
             // Vincular los parámetros
-            $statement->bindParam(':id_usuario', $idRegistro, PDO::PARAM_INT);
+            $stm->bindParam(':id_usuario', $idRegistro, PDO::PARAM_INT);
 
-            $statement->execute();
+            $stm->execute();
 
             // Obtener el resultado como un array asociativo
-            $registro = $statement->fetch(PDO::FETCH_ASSOC);
+            $registro = $stm->fetch(PDO::FETCH_ASSOC);
 
             return $registro; // Todo está bien
         } catch (PDOException $e) {
@@ -237,11 +237,11 @@ class Usuario
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $sql = "SELECT * FROM usuarios";
-            $statement = $conexion->prepare($sql);
-            $statement->execute();
-            $registros = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $stm = $conexion->prepare($sql);
+            $stm->execute();
+            $registros = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-            
+
 
             return $registros;
         } catch (PDOException $e) {
@@ -249,19 +249,19 @@ class Usuario
             return false;
         }
     }
-    
-    
+
+
 
 
     // update: Método para actualizar los datos de un usuario
     public function actualizarDatos($id_usuario, $nuevosDatos)
-{
-    try {
-        $conexion = Conexion::conectar();
-        
-       
-        // Construir la consulta SQL
-        $sql = "UPDATE usuarios SET 
+    {
+        try {
+            $conexion = Conexion::conectar();
+
+
+            // Construir la consulta SQL
+            $sql = "UPDATE usuarios SET 
                 nombre = :nombre, 
                 email = :email, 
                 contrasena = :contrasena, 
@@ -271,53 +271,54 @@ class Usuario
                 telefono = :telefono 
                 WHERE id_usuario = :id_usuario";
 
-        $statement = $conexion->prepare($sql);
+            $stm = $conexion->prepare($sql);
 
-        // Vincular los parámetros
-        $statement->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-        $statement->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
-        $statement->bindParam(':email', $nuevosDatos['email'], PDO::PARAM_STR);
-        
-        // Manejo seguro de la contraseña (si es necesario)
-        if (!empty($nuevosDatos['contrasena'])) {
-            // Hash de la nueva contraseña
-            $hashedPassword = password_hash($nuevosDatos['contrasena'], PASSWORD_DEFAULT);
-            $statement->bindParam(':contrasena', $hashedPassword, PDO::PARAM_STR);
-        } else {
-            // No actualizar la contraseña si no se proporciona una nueva
-            $statement->bindValue(':contrasena', null, PDO::PARAM_NULL);
+            // Vincular los parámetros
+            $stm->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
+            $stm->bindParam(':nombre', $nuevosDatos['nombre'], PDO::PARAM_STR);
+            $stm->bindParam(':email', $nuevosDatos['email'], PDO::PARAM_STR);
+
+            // Manejo seguro de la contraseña (si es necesario)
+            if (!empty($nuevosDatos['contrasena'])) {
+                // Hash de la nueva contraseña
+                $hashedPassword = password_hash($nuevosDatos['contrasena'], PASSWORD_DEFAULT);
+                $stm->bindParam(':contrasena', $hashedPassword, PDO::PARAM_STR);
+            } else {
+                // No actualizar la contraseña si no se proporciona una nueva
+                $stm->bindValue(':contrasena', null, PDO::PARAM_NULL);
+            }
+
+            $stm->bindParam(':direccion', $nuevosDatos['direccion'], PDO::PARAM_STR);
+            $stm->bindParam(':provincia', $nuevosDatos['provincia'], PDO::PARAM_STR);
+            $stm->bindParam(':postal', $nuevosDatos['postal'], PDO::PARAM_STR);
+            $stm->bindParam(':telefono', $nuevosDatos['telefono'], PDO::PARAM_STR);
+
+            $stm->execute();
+
+
+            return true; // Indica éxito
+        } catch (PDOException $e) {
+            // Registra el error de manera más específica
+            error_log("Error al actualizar datos del usuario: " . $e->getMessage());
+            return false; // Indica error
         }
-
-        $statement->bindParam(':direccion', $nuevosDatos['direccion'], PDO::PARAM_STR);
-        $statement->bindParam(':provincia', $nuevosDatos['provincia'], PDO::PARAM_STR);
-        $statement->bindParam(':postal', $nuevosDatos['postal'], PDO::PARAM_STR);
-        $statement->bindParam(':telefono', $nuevosDatos['telefono'], PDO::PARAM_STR);
-
-        $statement->execute();
-       
-
-        return true; // Indica éxito
-    } catch (PDOException $e) {
-        // Registra el error de manera más específica
-        error_log("Error al actualizar datos del usuario: " . $e->getMessage());
-        return false; // Indica error
     }
-}
 
 
     // Otras funciones del modelo aquí
-    public function eliminarUsuario($idUsuario) {
+    public function eliminarUsuario($idUsuario)
+    {
         $conexion = Conexion::conectar(); // Asegúrate de tener la clase de conexión
 
         // Preparar la consulta SQL
         $sql = "DELETE FROM usuarios WHERE id_usuario = :id_usuario";
-        $statement = $conexion->prepare($sql);
+        $stm = $conexion->prepare($sql);
 
         // Vincular parámetros
-        $statement->bindParam(":id_usuario", $idUsuario, PDO::PARAM_INT);
+        $stm->bindParam(":id_usuario", $idUsuario, PDO::PARAM_INT);
 
         // Ejecutar la consulta
-        $result = $statement->execute();
+        $result = $stm->execute();
 
         // Cerrar la conexión
         $conexion = null;
@@ -325,24 +326,39 @@ class Usuario
         return $result;
     }
 
-    public function Credenciales($email, $password) {
+    // SESSIONES  una se encarga de la autenticación del usuario y la otra se encarga de obtener y almacenar información adicional del usuario.
+    public function userExiste($user, $pass)
+    {
         $conexion = Conexion::conectar();
-        $sql = "SELECT email, contrasena, admin FROM usuarios WHERE email = ?";
-        $statement = $conexion->prepare($sql);
-        $statement->execute([$email]); // Pasar el email como parámetro de execute
-    
-        $result = $statement->fetch(PDO::FETCH_ASSOC); // Obtener el resultado como array asociativo
-        
-        if ($result) {
-            $hashed_password = $result['contrasena'];
-            
-            // Verificar la contraseña utilizando password_verify
-            if (password_verify($password, $hashed_password)) {
-                return $result; // Devuelve los datos del usuario
+        $sql = "SELECT email, contrasena FROM usuarios WHERE email = :email";
+        $stm = $conexion->prepare($sql);
+        $stm->execute(['email' => $user]);
+
+        if ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
+            $hashed_password = $row['contrasena'];
+
+            if (password_verify($pass, $hashed_password)) {
+                return true;
+            } else {
+                return false;
             }
+        } else {
+            return false; 
         }
-        
-        return false; // Credenciales incorrectas
+    }
+    //obtener y almacenar información del usuario 
+    public function setUser($user)
+    {
+        $conexion = Conexion::conectar();
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        $stm = $conexion->prepare($sql);
+        $stm->execute(['email' => $user]);
+
+        if ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
+
+            $this->nombre = $row['nombre'];
+            $this->email = $row['email'];
+            $this->admin = $row['admin'];
+        }
     }
 }
-

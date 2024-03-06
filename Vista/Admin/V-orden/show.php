@@ -1,7 +1,4 @@
 <?php
-// Inicia la sesión
-session_start();
-
 require_once('c://xampp/htdocs/ecommerce/Controlador/OrdenCon.php');
 
 if (isset($_GET['id'])) {
@@ -24,10 +21,6 @@ $ordenController = new Orden();
 // Llamar a la función para obtener los detalles de la orden
 $detallesOrden = $ordenController->obtenerOrdenPorId($idOrden);
 
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']); 
-}
 ?>
 <div>
     <h3>Detalles del Registro</h3>

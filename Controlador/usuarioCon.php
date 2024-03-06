@@ -1,43 +1,54 @@
 <?php
-require_once ("c://xampp/htdocs/ecommerce/Modelo/usuarioMod.php");
+require_once("c://xampp/htdocs/ecommerce/Modelo/usuarioMod.php");
 
-class UsuarioController {
-    public function registrarNuevoUsuario($datosUsuario) {
+class UsuarioController
+{
+
+    public function registrarNuevoUsuario($datosUsuario)
+    {
         // Crear una instancia del modelo
         $usuarioModel = new Usuario();
 
+        // Verificar si se proporcionó el apellido
+        if (isset($datosUsuario['apellido'])) {
+            // Si el apellido se proporciona, concatenarlo con el nombre
+            $nombreCompleto = $datosUsuario['nombre'] . ' ' . $datosUsuario['apellido'];
+        } else {
+            $nombreCompleto = $datosUsuario['nombre'];
+        }
         // Crear un objeto Usuario con los datos recibidos
         $nuevoUsuario = new Usuario(
             null,
-            $datosUsuario['nombre'],
+            $nombreCompleto,
             $datosUsuario['email'],
             $datosUsuario['contrasena'],
             $datosUsuario['direccion'],
             $datosUsuario['provincia'],
             $datosUsuario['postal'],
             $datosUsuario['telefono'],
-            null, // No es necesario pasar fecha_registro y ultimo_acceso aquí
+            null,
             null,
             $datosUsuario['admin']
         );
 
         // Llamar al método insertarUsuario del modelo
         $resultado = $usuarioModel->insertarUsuario($nuevoUsuario);
-        
 
-        // Ejemplo de redirección a una página después de la inserción
         if ($resultado) {
-            $_SESSION['mensaje'] = "El usuario se registró exitosamente.";
-            header("Location: /ecommerce/Vista/Admin/V-registro/index.php");
+            echo "<script> window.location.href = '/ecommerce/Vista/User/pages/inicio.php'; alert('Operación exitosa');</script>";
             exit();
         } else {
-            $_SESSION['mensaje'] = "Error al registrar el nuevo usuario.";
-            header("Location: /ecommerce/Vista/Admin/V-registro/index.php");
+            echo "<script>alert('Error al registrarte'); window.location.href = '/ecommerce/Vista/User/pages/registro.php';</script>";
             exit();
         }
     }
+
+    //header("Location: ecommerce/Vista/User/pages/inicio.php");
+    //header("Location: ecommerce/Vista/User/pages/registro.php");
+    
     //SHOW
-    public function mostrarDetallesUsuario($idUsuario) {
+    public function mostrarDetallesUsuario($idUsuario)
+    {
         // Crear una instancia del modelo
         $usuarioModel = new Usuario();
 
@@ -45,100 +56,71 @@ class UsuarioController {
         $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
 
         if ($registro) {
-            
             return $registro;
         } else {
             return false;
-            $_SESSION['mensaje'] = "El usuario no existe.";
-            exit();
         }
     }
 
     //INDEX
     public function listarUsuarios()
     {
-        
-        $modeloUsuario = new Usuario(); 
+
+        $modeloUsuario = new Usuario();
 
         // Llamar al método obtenerTodosRegistro del modelo
         $usuarios = $modeloUsuario->obtenerTodosRegistro();
- 
+
         if ($usuarios !== false) {
-            
+            echo "<script>alert('Operación exitosa(registro optenido)');</script>";
             return $usuarios;
+            exit();
         } else {
-            $_SESSION['mensaje'] = "Error al obtener todos los usuarios.";
+            echo "<script>alert('Operación invalida(optener registro)');</script>";
+            return false;
+            exit();
         }
     }
 
 
     // update: Método para actualizar los datos de un usuario
     public function editarUsuario($idUsuario, $nuevosDatos)
-{
-    $usuarioModel = new Usuario();
-    $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
+    {
+        $usuarioModel = new Usuario();
+        $registro = $usuarioModel->obtenerRegistroPorId($idUsuario);
 
-    // Verificar si se obtuvo el registro correctamente
-    if ($registro) {
-        // Utilizar el método público para actualizar los datos
-        $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
+        // Verificar si se obtuvo el registro correctamente
+        if ($registro) {
+            // Utilizar el método público para actualizar los datos
+            $actualizacionExitosa = $usuarioModel->actualizarDatos($idUsuario, $nuevosDatos);
 
-        // Verificar si la actualización fue exitosa
-        if ($actualizacionExitosa) {
-            $_SESSION['mensaje'] = "Los datos del usuario se actualizaron correctamente.";
+            // Verificar si la actualización fue exitosa
+            if ($actualizacionExitosa) {
+                echo "<script>alert('Operación exitosa(Los datos del usuario se actualizaron correctamente)');</script>";
+                exit();
+            } else {
+                echo "<script>alert('Operación invalida(Error al actualizar los datos del usuario)');</script>";
+            }
+
+            return $actualizacionExitosa;
         } else {
-            $_SESSION['mensaje'] = "Error al actualizar los datos del usuario.";
-        }
 
-        return $actualizacionExitosa;
-    } else {
-        // Si no se encuentra el usuario, establecer un mensaje de error en la sesión
-        $_SESSION['mensaje'] = "El usuario no existe.";
-        return false;
+            return false;
+        }
     }
-}
 
 
     // Función para eliminar un usuario
-    public function eliminarUsuario($idUsuario) {
+    public function eliminarUsuario($idUsuario)
+    {
         $usuarioModel = new Usuario();
         $result = $usuarioModel->eliminarUsuario($idUsuario);
 
-       // Verificar si la eliminación fue exitosa
-       if ($result) {
-        
-        $_SESSION['mensaje'] = "El usuario se eliminó correctamente.";
-    } else {
-        
-        $_SESSION['mensaje'] = "Error al eliminar el usuario.";
-    }
-    return $result;
-}
-
-    public function verificarCredenciales($email, $contrasena) {
-        
-        $usuarioModelo = new Usuario();
-        $usuario = $usuarioModelo->Credenciales($email, $contrasena);
-       
-        if ($usuario) {
-            if ($usuario['admin'] == 1) {
-                // Usuario es administrador, redirigir a admin.php
-                header('Location: /ecommerce/admin.php');
-                exit;
-            } else {
-                // Usuario no es administrador, redirigir a otra página (por ejemplo, inicio.php)
-                header('Location:  /ecommerce/index.html');
-                exit;
-            }
+        // Verificar si la eliminación fue exitosa
+        if ($result) {
+            return "El usuario fue eliminado exitosamente.";
         } else {
-            header('Location: inicio.php?error=Credenciales inválidas. Por favor, inténtelo de nuevo.');
-            exit;
+            return "Error al eliminar el usuario.";
         }
-        
     }
-    
 }
-
-
-
-?>

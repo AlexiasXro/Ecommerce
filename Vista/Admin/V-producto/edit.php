@@ -30,7 +30,7 @@ if ($detallesProducto !== false) {
         $actualizado = $productoCon->editarProducto($idProducto, $nuevosDatos);
 
         if (!$actualizado) {
-            echo "Error al actualizar los datos de producto.";
+            echo '<div class="alert alert-danger" role="alert">Error al actualizar los datos de producto.</div>';
         }
     }
 }

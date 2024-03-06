@@ -8,14 +8,6 @@ $productoCon = new ProductoCon();
 // Llamar a la función para listar productos
 $productos = $productoCon->listarProducto();
 
-
-
-// Mostrar mensaje de éxito
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']);  
-}
-
 ?>
 
 <h3>Lista de Productos</h3>

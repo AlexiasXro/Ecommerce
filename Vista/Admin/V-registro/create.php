@@ -9,8 +9,12 @@ require_once('c://xampp/htdocs/ecommerce/Vista/Admin/includes/header.php');
     <h3>Nuevo Usuario</h3>
     <form action="store.php" method="POST" autocomplete="off">
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre y Apellido</label>
+            <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre">
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" name="apellido">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Correo</label>

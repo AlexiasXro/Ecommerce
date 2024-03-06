@@ -1,18 +1,3 @@
-<?php
-ob_start(); //para activar el almacenamiento en búfer de salida. Esto evitará que cualquier salida se envíe al navegador antes de que se llame a header()
-
-// Iniciar sesión de mensajes si no está iniciada
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Mostrar mensajes si existen
-if (isset($_SESSION['mensaje'])) {
-    echo "<div class='alert alert-danger'>{$_SESSION['mensaje']}</div>";
-    // Cerrar la sesión de mensajes después de mostrarlos
-    unset($_SESSION['mensaje']);
-}
-?>
 <!doctype html>
 <html lang="en">
 
@@ -67,18 +52,18 @@ if (isset($_SESSION['mensaje'])) {
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Carrito</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-carrito/index.php">Carrito</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Carrito </a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Producto/Orden </a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Agregar carrito </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-carrito/index.php">Carrito</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Carrito </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Orden </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Agregar carrito </a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link   disabled dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pago</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/index.php">Orden/Producto</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-pagos/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/index.php">Orden/Producto</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -94,12 +79,7 @@ if (isset($_SESSION['mensaje'])) {
                 </form>
             </div>
             <div>
-                <?php
-                // Verificar si hay una sesión activa y si es administrador
-                if (isset($_SESSION['nombre']) && $_SESSION['admin'] == 1) {
-                    echo '<h3>' . $_SESSION['nombre'] . '</h3>';
-                }
-                ?>
+               
             </div>
     </div>
     </nav>

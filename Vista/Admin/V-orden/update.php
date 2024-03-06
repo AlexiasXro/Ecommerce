@@ -28,13 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $actualizacionExitosa = $ordenController->editarOrden($idOrden, $nuevosDatos);
 
     if ($actualizacionExitosa) {
-        // Establece un mensaje de éxito 
-        $_SESSION['mensaje'] = 'Orden actualizada exitosamente.';
+        echo '<div class="alert alert-primary" role="alert">orden actualizado.</div>';
         header("Location: show.php?id=" . $idOrden);
         exit(); 
     } else {
-        // Establece un mensaje de error
-        $_SESSION['mensaje'] = 'Error al actualizar la orden.';
+        echo '<div class="alert alert-danger" role="alert">Error al actualizar orden.</div>';
     }
 }
 ?>

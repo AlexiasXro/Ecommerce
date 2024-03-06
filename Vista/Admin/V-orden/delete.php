@@ -1,6 +1,5 @@
 <?php
-// Inicia la sesión
-session_start();
+
 
 require_once('c://xampp/htdocs/ecommerce/Controlador/OrdenController.php');
 
@@ -24,11 +23,11 @@ $ordenController = new OrdenCon();
 $eliminacionExitosa = $ordenController->eliminarOrden($idOrden);
 
 if ($eliminacionExitosa) {
-    // Orden eliminada exitosamente
-    $_SESSION['mensaje'] = 'Orden eliminada exitosamente.';
+    echo '<div class="alert alert-danger" role="alert">exitosamente.</div>';
+    
 } else {
     // Error al eliminar la orden
-    $_SESSION['mensaje'] = 'Error al eliminar la orden.';
+    echo '<div class="alert alert-danger" role="alert">Error.</div>';
 }
 
 // Redirige a la página principal

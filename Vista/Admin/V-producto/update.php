@@ -38,13 +38,11 @@ if ($detallesProducto !== false) {
         $actualizacionExitosa = $ProductoCon->editarProducto($idProducto, $nuevosDatos);
 
         if ($actualizacionExitosa) {
-        // Establece un mensaje de éxito 
-        $_SESSION['mensaje'] = 'Producto actualizado exitosamente.';
+        echo "<script>alert('Producto actualizado exitosamente.');</script>";
         header("Location: show.php?id=" . $idProducto);
         exit(); 
     } else {
-        // Establece un mensaje de error
-        $_SESSION['mensaje'] = 'Error al actualizar los datos.';
+        echo "<script>alert('Error al actualizar los datos.');</script>";
     }
 }
 }

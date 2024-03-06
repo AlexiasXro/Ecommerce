@@ -1,4 +1,4 @@
-/CREATE/agregar nuevos usuarios
+
 <?php
 
 // Incluye el encabezado y el menú

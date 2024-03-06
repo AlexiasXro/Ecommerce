@@ -10,10 +10,6 @@ $ordenController = new OrdenCon();
 $ordenes = $ordenController->listarOrdenes();
 
 // Mostrar mensaje de éxito
-if (isset($_SESSION['mensaje'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['mensaje'] . '</div>';
-    unset($_SESSION['mensaje']);  
-}
 
 ?>
 
