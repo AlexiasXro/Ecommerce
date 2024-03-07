@@ -10,12 +10,11 @@ Objetivo final es ofrecer una amplia variedad de calzado y proporcionar una expe
 
 Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.000webhostapp.com/)
 
-## Descripción del Proyecto
-La tienda virtual fue desarrollada utilizando Bootstrap para las vistas.
+
 ### Tecnologías Utilizadas:
 
-- **Bootstrap:** Se ha utilizado para el diseño y maquetación de las vistas, lo que garantiza una experiencia de usuario moderna y receptiva.
-- **PHP:** El backend de la aplicación se ha implementado en PHP, utilizando el patrón de diseño Modelo-Vista-Controlador (MVC) para una organización estructurada del código y una separación clara de las capas de presentación, lógica de negocio y acceso a datos.
+- **Html, CSS, JS y Bootstrap5:** Se ha utilizado para el diseño y maquetación de las vistas, lo que garantiza una experiencia de usuario moderna y receptiva.
+- **PHP nativo:** El backend de la aplicación se ha implementado en PHP, utilizando el patrón de diseño Modelo-Vista-Controlador (MVC) para una organización estructurada del código y una separación clara de las capas de presentación, lógica de negocio y acceso a datos.
 - **MySQL:** Se emplea como el sistema de gestión de bases de datos relacional para almacenar y recuperar información relevante para el funcionamiento de la tienda virtual.
 - 
 
@@ -34,9 +33,7 @@ La tienda virtual fue desarrollada utilizando Bootstrap para las vistas.
 - **Vista de Ubicacion:** Tienda Fisica
 
 ## Funcionalidades para el Usuario Administrador
-
-El usuario administrador tiene acceso a las siguientes funcionalidades:
- Permite el CRUD de productos,usuarios y ordenes de compra.
+ Permite la gestion (CRUD) de productos,usuarios y ordenes de compra.
 
 
 
