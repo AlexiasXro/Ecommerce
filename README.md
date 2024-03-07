@@ -2,16 +2,16 @@
 
 ¡Bienvenido al repositorio de ABBA Shoe, una plataforma de comercio electrónico de calzados y accesorios!
 
-## Objetivo Final
+### Objetivo Final
 
 Objetivo final es ofrecer una amplia variedad de calzado y proporcionar una experiencia de compra fácil y conveniente para todos los usuarios.
 
-## Sitio Web en Vivo
+### Sitio Web en Vivo
 
 Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.000webhostapp.com/)
 
 
-### Tecnologías Utilizadas:
+## Tecnologías Utilizadas:
 
 - **Html, CSS, JS y Bootstrap5:** Se ha utilizado para el diseño y maquetación de las vistas, lo que garantiza una experiencia de usuario moderna y receptiva.
 - **PHP nativo:** El backend de la aplicación se ha implementado en PHP, utilizando el patrón de diseño Modelo-Vista-Controlador (MVC) para una organización estructurada del código y una separación clara de las capas de presentación, lógica de negocio y acceso a datos.
@@ -20,7 +20,7 @@ Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.0
 
 - **Registro de Usuarios y Administrador:** La plataforma cuenta con un sistema de registro de usuarios y un área administrativa. Para acceder como administrador, utiliza el correo electrónico `admin@gmail.com` y la contraseña `admin`.
 
-## Funcionalidades para Usuarios Normales
+### Funcionalidades para Usuarios Normales
 
 - **Index:** Muestra las categorias un menu, metodos de pago e informacion relevante de la tienda y como contactarlos.
 - **Búsqueda por Categorías de Productos:** (pendiente)
@@ -32,7 +32,7 @@ Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.0
 - **FAQ:**Preguntas frecuentes accesible en el footer
 - **Vista de Ubicacion:** Tienda Fisica
 
-## Funcionalidades para el Usuario Administrador
+### Funcionalidades para el Usuario Administrador
  Permite la gestion (CRUD) de productos,usuarios y ordenes de compra.
 
 
