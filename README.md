@@ -16,8 +16,6 @@ Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.0
 - **Html, CSS, JS y Bootstrap5:** Se ha utilizado para el diseño y maquetación de las vistas, lo que garantiza una experiencia de usuario moderna y receptiva.
 - **PHP nativo:** El backend de la aplicación se ha implementado en PHP, utilizando el patrón de diseño Modelo-Vista-Controlador (MVC) para una organización estructurada del código y una separación clara de las capas de presentación, lógica de negocio y acceso a datos.
 - **MySQL:** Se emplea como el sistema de gestión de bases de datos relacional para almacenar y recuperar información relevante para el funcionamiento de la tienda virtual.
-- 
-
 - **Registro de Usuarios y Administrador:** La plataforma cuenta con un sistema de registro de usuarios y un área administrativa. Para acceder como administrador, utiliza el correo electrónico `admin@gmail.com` y la contraseña `admin`.
 
 ### Funcionalidades para Usuarios Normales
@@ -29,7 +27,7 @@ Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.0
 - **Vista del Carrito:** Permite la modificación o eliminación de productos.
 - **Uso de Mercado Pago:** (todavía no está activo)
 - **Vista de Perfil de Usuario:** Muestra las órdenes de compras hechas (Pendiente)
-- **FAQ:**Preguntas frecuentes accesible en el footer
+- **FAQ:** Preguntas frecuentes accesible en el footer
 - **Vista de Ubicacion:** Tienda Fisica
 
 ### Funcionalidades para el Usuario Administrador
