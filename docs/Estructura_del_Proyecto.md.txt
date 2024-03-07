@@ -1,0 +1,110 @@
+ecommerce/
+│
+├── config/
+│   └── Conexion.php
+│
+├── Controlador/
+│   ├── productoCon.php
+│   ├── ordenCon.php
+│   └── usuarioCon.php
+│
+├── Modelo/
+│   ├── Producto.php
+│   ├── Orden.php
+│   └── Usuario.php
+│
+├── docs/
+│   ├── Estructura_del_Proyecto.md
+│   ├── Modelo_de_Datos.md
+│   ├── Modelo_de_Datos_Base_de_Datos.md
+│   ├── Flujo_de_Usuario.md
+│   ├── Proceso_de_Registro_y_Autenticacion.md
+│   ├── Integracion_con_Mercado_Pago.md
+│   ├── Consideraciones_de_Seguridad.md
+│   ├── Mantenimiento_y_Escalabilidad.md
+│   ├── Gestion_de_Errores.md
+│   ├── Soporte_y_Contacto.md
+│   └── Pruebas_y_Calidad.md
+│
+├── Vista/
+│   ├── Admin/
+│   │   ├── includes/
+│   │   │   ├── header.php
+│   │   │   └── footer.php
+│   │   │
+│   │   ├── assets/
+│   │   │   ├── style.css
+│   │   │   ├── script.js
+│   │   │   └── img/
+│   │   │       └── logoamd.png
+│   │   │
+│   │   ├── V-orden/
+│   │   │   ├── create.php
+│   │   │   ├── delete.php
+│   │   │   ├── edit.php
+│   │   │   ├── index.php
+│   │   │   ├── show.php
+│   │   │   ├── store.php
+│   │   │   └── update.php
+│   │   │
+│   │   ├── V-usuario/
+│   │   │   ├── create.php
+│   │   │   ├── delete.php
+│   │   │   ├── edit.php
+│   │   │   ├── index.php
+│   │   │   ├── show.php
+│   │   │   ├── store.php
+│   │   │   └── update.php
+│   │   │
+│   │   └── V-producto/
+│   │       ├── create.php
+│   │       ├── delete.php
+│   │       ├── edit.php
+│   │       ├── index.php
+│   │       ├── show.php
+│   │       ├── store.php
+│   │       └── update.php
+│   │
+│   └── User/
+│       ├── components/
+│       │   ├── header.php
+│       │   └── footer.php
+│       │
+│       ├── assets/
+│       │   ├── css/
+│       │   │   ├── carro.css
+│       │   │   ├── comocomprar.css
+│       │   │   ├── footer.css
+│       │   │   ├── header.css
+│       │   │   ├── inicio.css
+│       │   │   ├── pedido.css
+│       │   │   └── preguntas.css
+│       │   │
+│       │   ├── img/
+│       │   │   ├── catW269-H518.jpg
+│       │   │   ├── flasherH1925-744.jpg
+│       │   │   └── imgP.jpg
+│       │   │
+│       │   ├── js/
+│       │   │   ├── anuncio.js
+│       │   │   ├── carro.js
+│       │   │   ├── cart.js
+│       │   │   └── video.js
+│       │   │
+│       │   └── logos/
+│       │       ├── blanco.png
+│       │       └── negro.png
+│       │
+│       └── pages/
+│           ├── carro.html
+│           ├── comocomprar.html
+│           ├── descuentos.html
+│           ├── historia.html
+│           ├── Local.html
+│           ├── NEW.html
+│           ├── preguntas.html
+│           ├── tipodepago.html
+│           ├── inicio.php
+│           └── registro.php
+│
+└── README.md
