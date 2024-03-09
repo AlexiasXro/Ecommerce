@@ -3,29 +3,23 @@ require_once('c://xampp/htdocs/ecommerce/Modelo/user_session.php');
 require_once('c://xampp/htdocs/ecommerce/Modelo/usuarioMod.php');
 
 $userSession = new UserSession();
-$loginMessage = 'Bienvenido';
+$loginMessage = '';
 
 // Si el usuario intenta iniciar sesión
 if (isset($_POST['email']) && isset($_POST['password'])) {
-    // Validar el inicio de sesión utilizando el modelo de usuario
     $userForm = $_POST['email'];
     $passForm = $_POST['password'];
-
-    // Crear una instancia del modelo de usuario
     $usuario = new Usuario();
 
-    // Verificar si el usuario existe utilizando el método userExiste del modelo de usuario
+    // Verificar si el usuario existe utilizando el método userExiste del modelo de usuarioMod
     if ($usuario->userExiste($userForm, $passForm)) {
-        // Establecer el usuario actual en la sesión
         $userSession->setCurrentUser($userForm);
-
-        // Obtener y almacenar información del usuario
         $usuario->setUser($userForm);
 
         // Verificar si el usuario es administrador
         if ($usuario->isAdmin()) {
             $userSession->setIsAdmin(true);
-            header(" http://localhost/ecommerce/admin.php");
+            header("Location: http://localhost/ecommerce/admin.php");
             exit();
         } else {
             header("Location: http://localhost/ecommerce/index.html");

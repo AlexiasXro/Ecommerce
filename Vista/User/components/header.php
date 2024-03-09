@@ -1,10 +1,17 @@
 <?php
-
+require_once 'c://xampp/htdocs/ecommerce/Modelo/user_session.php';
 // Inicia la sesión o crea una instancia de UserSession para gestionar la sesión
 $userSession = new UserSession();
 
 // Obtén el nombre de usuario actual
 $nombreUsuario = $userSession->getCurrentUser();
+
+if (isset($_POST['cerrar_sesion'])) {
+    $userSession->closeSession();
+    header("Location: http://localhost/ecommerce/index.html");
+    exit();
+}
+
 ?>
 
 
@@ -21,13 +28,14 @@ $nombreUsuario = $userSession->getCurrentUser();
         <meta name="keywords" content="zapatería, calzado, zapatos, botas, zapatillas, moda, calidad">
         <meta name="robots" content="index, follow">
         <title>AbbaShoe</title>
+        <link rel="icon" href="../../../ASico.ico">
         <!--icono bx y Bootstrap-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xxxxxx" crossorigin="anonymous" />
         <!-- Boxicons CSS -->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+        <link rel="icon" href="/ecommerce/Vista/User/assets/logo/ASico.ico">
         <!--STLYLE CSS-->
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'><!--STLYLE CSS iconos-->
         <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/header.css">
@@ -66,7 +74,7 @@ $nombreUsuario = $userSession->getCurrentUser();
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
                 <a href=".././index.html">
-                    <img src="/img/logos/logo_p.png" alt="Abba Shoes">
+                    <img src="../assets/logos/blanco.png" alt="Abba Shoes">
                 </a>
             </div>
 
@@ -79,12 +87,12 @@ $nombreUsuario = $userSession->getCurrentUser();
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="./pages/carro.php">CATALOGO</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./pages/sale.html">OFERTAS</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/contactanos.html">NOSOTROS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/carro.html">CATALOGO</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/descuentos.html">OFERTAS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/historia.html">NOSOTROS</a></li>
                             <li class="nav-item"><a class="nav-link" href="../pages/Local.html">SUCURSALES</a></li>
                             <li class="nav-item"><a class="nav-link" href="../pages/registro.php">REGISTRATE</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/loguin.phpS">INICIO</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/loguin.php">INICIO</a></li>
                         </ul>
                     </div>
                 </div>
@@ -102,9 +110,10 @@ $nombreUsuario = $userSession->getCurrentUser();
                             <i class='bx bx-user-circle' id=""></i> Usuario: <?php echo $nombreUsuario; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="caracteristicasDropdown">
-                            <!-- Dropdown menu items can be added here -->
-                            <li><a class="dropdown-item" href="#">Cerra Secion</a></li>
-                            <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                            <form action="" method="post">
+                                <button type="submit" name="cerrar_sesion">Cerrar Sesión</button>
+                            </form>
+                            <li><a class="dropdown-item" href="../pages/NEW.html">Ayuda</a></li>
                         </ul>
                     </li>
 

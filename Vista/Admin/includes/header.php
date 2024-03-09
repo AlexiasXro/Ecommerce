@@ -1,17 +1,30 @@
-<!doctype html>
+<?php
+require_once 'c://xampp/htdocs/ecommerce/Modelo/user_session.php';
+// Inicia la sesión o crea una instancia de UserSession para gestionar la sesión
+$userSession = new UserSession();
+
+// Obtén el nombre de usuario actual
+$nombreUsuario = $userSession->getCurrentUser();
+
+if (isset($_POST['cerrar_sesion'])) {
+    $userSession->closeSession();
+    header("Location: http://localhost/ecommerce/index.html");
+    exit();
+}
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>I
-
-    </title>
-
+    <title> Gestion Admin</title>
+    <link rel="icon" href="../../../ASico.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
     <link hrel="stylesheet" href="/ecommerce/Vista/Admin/includes/public/style.css">
-
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="icon" href="/ecommerce/Vista/User/assets/logo/ASico.ico">
 
 </head>
 
@@ -25,6 +38,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <li class="nav-item dropdown" data-bs-theme="dark">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-user-circle' id=""></i> Usuario: <?php echo $nombreUsuario; ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <form action="" method="post">
+                                    <a><button type="submit" name="cerrar_sesion" id="cerrarsession-button">Cerrar Sesión</button></a>
+                                </form>
+                                <li><a class="dropdown-item" href="">Ayuda</a></li>
+                            </ul>
+                        </li>
+                        <!--generar espacio-->
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registro</a>
                             <ul class="dropdown-menu">
@@ -52,10 +77,10 @@
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Carrito</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-carrito/index.php">Carrito</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Carrito </a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Orden </a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Agregar carrito </a></li>
+                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-carrito/index.php">Carrito</a></li>
+                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Producto/Carrito </a></li>
+                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Producto/Orden </a></li>
+                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Agregar carrito </a></li>
                             </ul>
                         </li>
 
@@ -79,7 +104,6 @@
                 </form>
             </div>
             <div>
-               
             </div>
     </div>
     </nav>
