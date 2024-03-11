@@ -83,7 +83,9 @@ ecommerce/
 │       │   ├── img/
 │       │   │   ├── catW269-H518.jpg
 │       │   │   ├── flasherH1925-744.jpg
-│       │   │   └── imgP.jpg
+│       │   │   ├── producto-img
+│       │   │   ├──└── 
+│       │   │   └── imgP
 │       │   │
 │       │   ├── js/
 │       │   │   ├── anuncio.js

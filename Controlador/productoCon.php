@@ -5,22 +5,40 @@ class ProductoCon {
 
     public function registrarNuevoProducto($datosProducto) {
         $productoModel = new Producto();
+        
+        // Inicializar la variable de la ruta de la imagen por defecto
+        $ruta_imagen = 'Vista/User/assets/img/default.png';
+    
+        // Obtener la ruta de la imagen del formulario
+        if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $imagen_tmp = $_FILES['imagen']['tmp_name'];
+            $nombre_imagen = $_FILES['imagen']['name'];
+            $ruta_imagen = 'Vista/User/assets/img/producto-img/' . $nombre_imagen; // Ruta donde deseas guardar las imágenes
+            move_uploaded_file($imagen_tmp, $ruta_imagen);
+        }
+    
+        // Agregar la ruta de la imagen a los datos del producto
+        $datosProducto['foto'] = $ruta_imagen;
+    
+        // Crear un nuevo producto con los datos del formulario, incluida la ruta de la imagen
         $nuevoProducto = new Producto(
             null,
             $datosProducto['nombre'],
             $datosProducto['precio'],
             $datosProducto['descripcion'],
-            $datosProducto['foto'],
+            $datosProducto['foto'], // Aquí se pasa la ruta de la imagen
             $datosProducto['stock'],
             $datosProducto['talle'],
             $datosProducto['color'],
-            null, 
+            null
         );
+        
+        // Insertar el nuevo producto en la base de datos
         $resultado = $productoModel->insertarDatos($nuevoProducto);
-
+    
         if ($resultado) {
             $_SESSION['mensaje'] = "El nuevo producto se registró correctamente.";
-            header("Location: /ecommerce/Vista/V-producto/index.php");
+            header("Location: /ecommerce/Vista/Admin/V-producto/index.php");
             exit();
         } else {
             $_SESSION['mensaje'] = "Error al registrar el nuevo producto.";

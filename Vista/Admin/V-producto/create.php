@@ -1,4 +1,3 @@
-
 <?php
 
 // Incluye el encabezado y el menú
@@ -8,7 +7,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/Admin/includes/header.php');
 ?>
 <div class="container mt-3 row justify-content-center col-md-6">
     <h3>Nuevo Producto</h3>
-    <form action="store.php" method="POST" autocomplete="off">
+    <form action="store.php" method="POST" autocomplete="off" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del producto</label>
             <input type="text" class="form-control" id="nombre" name="nombre">
@@ -55,15 +54,12 @@ require_once('c://xampp/htdocs/ecommerce/Vista/Admin/includes/header.php');
             </select>
         </div>
 
+        <!--gestion de imagen-->
         <div class="mb-3">
-            <label for="website" class="form-label">Imagen Url</label>
-            <input type="url" name="imagen_url" class="form-control" id="website">
+            <label for="imagen" class="form-label">Imagen del producto</label>
+            <input type="file" class="form-control" id="imagen" name="imagen">
         </div>
-        <div class="mb-3">
-            <label for="fileInput" class="form-label">Seleccionar imagen</label>
-            <input type="file" class="form-control-file" id="fileInput">
-        </div>
-        
+
         <button type="submit" class="btn btn-primary" href="show.php">Guardar</button>
         <a class="btn btn-danger" href="index.php">Cancelar</a>
     </form>

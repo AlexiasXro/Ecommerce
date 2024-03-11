@@ -57,27 +57,41 @@ $detallesProductos = $productoCon->mostrarDetallesProducto($idProducto);
                 <th scope="col">talle</th>
                 <th scope="col">color</th>
                 <th scope="col">Fecha de creacion</th>
-                <th scope="col">Imagen Url</th>
+                <th scope="col">Imagen </th>
+                <th scope="col"> Url</th>
                 <!--7-->
             </thead>
             <tbody>
-                <?php
-                if ($detallesProductos !== false && is_array($detallesProductos)) {
-                    echo "<tr>";
-                    echo "<td>" . $detallesProductos['id_producto'] . "</td>";
-                    echo "<td>" . $detallesProductos['nombre'] . "</td>";
-                    echo "<td>" . (isset($detallesProductos['descripcion']) ? $detallesProductos['descripcion'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['precio']) ? $detallesProductos['precio'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['stock']) ? $detallesProductos['stock'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['talle']) ? $detallesProductos['talle'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['color']) ? $detallesProductos['color'] : 'Vacio') . "</td>";
-                    echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio');
-                    echo "<td>" . (isset($detallesProductos['foto']) ? $detallesProductos['foto'] : 'Vacio') . "</td>";
-                    echo "</td>"; // Cierra la celda de la imagen
+            <?php
+            if ($detallesProductos !== false && is_array($detallesProductos)) {
+                echo "<tr>";
+                echo "<td>" . $detallesProductos['id_producto'] . "</td>";
+                echo "<td>" . $detallesProductos['nombre'] . "</td>";
+                echo "<td>" . (isset($detallesProductos['descripcion']) ? $detallesProductos['descripcion'] : 'Vacio') . "</td>";
+                echo "<td>" . (isset($detallesProductos['precio']) ? $detallesProductos['precio'] : 'Vacio') . "</td>";
+                echo "<td>" . (isset($detallesProductos['stock']) ? $detallesProductos['stock'] : 'Vacio') . "</td>";
+                echo "<td>" . (isset($detallesProductos['talle']) ? $detallesProductos['talle'] : 'Vacio') . "</td>";
+                echo "<td>" . (isset($detallesProductos['color']) ? $detallesProductos['color'] : 'Vacio') . "</td>";
+                echo "<td>" . (isset($detallesProductos['fecha_creacion']) ? $detallesProductos['fecha_creacion'] : 'Vacio') . "</td>";
+                echo "<td>";
+                if (isset($detallesProductos['foto'])) {
+                    echo "<img src='" . $detallesProductos['foto'] . "' alt='Imagen del producto'>";
                 } else {
-                    echo "<tr><td colspan='7'>No hay productos</td></tr>";
+                    echo "Vacio";
                 }
-                ?>
+                echo "</td>";
+                echo "<td>";
+                if (isset($detallesProductos['foto'])) {
+                    echo $detallesProductos['foto'];
+                } else {
+                    echo "Vacio";
+                }
+                echo "</td>";
+                echo "</tr>";
+            } else {
+                echo "<tr><td colspan='10'>No hay productos</td></tr>";
+            }
+            ?>
             </tbody>
         </table>
 

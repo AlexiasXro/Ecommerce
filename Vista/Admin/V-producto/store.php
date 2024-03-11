@@ -10,7 +10,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
     $talle = $_POST['talle'];
     $color = $_POST['color'];
-    $foto = $_POST['foto'];
+
+    // Manejar la carga de la imagen
+    $ruta_imagen = null;
+    if (isset($_FILES['imagen'])) {
+        $imagen_tmp = $_FILES['imagen']['tmp_name'];
+        $nombre_imagen = $_FILES['imagen']['name'];
+        $ruta_imagen = __DIR__ . '/ecommerce/Vista/User/assets/img/producto-img/' . $nombre_imagen; // Ruta donde deseas guardar las imágenes
+        
+        error_log("Guardando Imagenes tmp: " . $imagen_tmp . "\n");
+        error_log("Guardando Imagenes image: " . $nombre_imagen . "\n");
+
+        // Mover la imagen a la ubicación deseada
+        if (move_uploaded_file($imagen_tmp, $ruta_imagen)) {
+            error_log("La imagen se ha guardado correctamente.\n");
+        } else {
+            error_log("Error al guardar la imagen.\n");
+        }
+    } else {
+        error_log( "No se recibió ninguna imagen.\n");
+    }
 
     // Crear un array con los datos
     $datosProducto = [
@@ -20,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'stock' => $stock,
         'talle' => $talle,
         'color' => $color,
-        'foto' => $foto,
+        'foto' => $ruta_imagen,
         
     ];
 

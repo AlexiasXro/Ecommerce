@@ -33,7 +33,7 @@ Explora el sitio web estatico en vivo: [ABBA Shoe E-commerce](https://abbashoe.0
 ### Funcionalidades para el Usuario Administrador
  Permite la gestion (CRUD) de productos,usuarios y ordenes de compra.
 
-
+wenas
 
 ## Documentación
 

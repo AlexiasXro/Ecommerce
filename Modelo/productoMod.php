@@ -104,16 +104,19 @@ class Producto {
     {
         try {
             $conexion = Conexion::conectar();
-            $rutaBase = 'ecommerce/Vista/public/producto-img/';
-            $nombreImagen = "1.png"; // Nombre de la imagen
+            $rutaBase = 'Vista/User/assets/img/producto-img/';
+            // Obtener el nombre del producto
+            $nombre = $producto->getNombre();
+            // Formar el nombre de la imagen a partir del nombre del producto
+            $nombreImagen = strtolower(str_replace(' ', '_', $nombre)) . '.png';
+            
             $rutaCompleta = $rutaBase . $nombreImagen;
             
             $sql = "INSERT INTO productos (nombre, descripcion, precio, foto, stock, talle, color)
                                     VALUES( :nombre, :descripcion, :precio, :foto, :stock, :talle, :color)";
-
+    
             $stmt = $conexion->prepare($sql);
-
-            $nombre = $producto->getNombre();
+    
             $descripcion = $producto->getDescripcion();
             $precio = $producto->getPrecio();
             $stock = $producto->getStock();
@@ -129,13 +132,16 @@ class Producto {
             $stmt->bindParam(':color', $color);
             $stmt->bindParam(':foto', $foto);
             $stmt->execute();
-
+    
             return true; // La inserción fue exitosa
         } catch (PDOException $e) {
             echo "Error en la inserción: " . $e->getMessage();
             return false;
         }
+    
     }
+
+
     //Metodo para traer un productos de la BD(SHOW)
     public function obtenerProductoPorId($idProducto)
     {
@@ -240,31 +246,29 @@ class Producto {
         return $result;
     }
 
-    //PAGINADO 8productos
-    public function obtenerProductosPaginados($pagina)
-    {
+    
+
+    //modelo usado por categoriaCon filtro
+    public function obtenerProductosPorCategoria($categoria) {
         try {
+            
             $conexion = Conexion::conectar();
-            $porPagina = 8; // Número de productos por página
-            $inicio = ($pagina - 1) * $porPagina;
-
-            $sql = "SELECT * FROM productos LIMIT :inicio, :porPagina";
-
+            
+            $sql = "SELECT * FROM productos WHERE categoria = :categoria";
+            
             $stmt = $conexion->prepare($sql);
-            $stmt->bindParam(':inicio', $inicio, PDO::PARAM_INT);
-            $stmt->bindParam(':porPagina', $porPagina, PDO::PARAM_INT);
+            $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
             $stmt->execute();
-
+    
             $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            
             return $productos;
         } catch (PDOException $e) {
-            error_log("Error al obtener los productos paginados: " . $e->getMessage());
+            echo "Error al obtener productos por categoría: " . $e->getMessage();
             return false;
         }
+
     }
-
-
 }
 
 ?>

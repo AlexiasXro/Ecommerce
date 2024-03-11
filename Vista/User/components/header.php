@@ -12,6 +12,21 @@ if (isset($_POST['cerrar_sesion'])) {
     exit();
 }
 
+// Obtener el filtro de categoría o filtro de la URL
+$categoria = $_GET['categoria'] ?? null;
+$filtro = $_GET['filtro'] ?? null;
+
+if ($categoria) {
+    // Aplicar filtro por categoría
+    // Llamar al método del modelo para obtener productos de la categoría seleccionada
+} elseif ($filtro) {
+    // Aplicar filtro por precio menor o precio mayor
+    // Llamar al método del modelo para obtener productos filtrados por precio
+} else {
+    // Obtener todos los productos sin filtro
+    // Llamar al método del modelo para obtener todos los productos
+}
+
 ?>
 
 
@@ -117,61 +132,62 @@ if (isset($_POST['cerrar_sesion'])) {
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="filtrarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class='bx bx-category-alt'></i> Categoria
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="caracteristicasDropdown">
-                            <li><button class="dropdown-item">Zapatos</button></li>
-                            <li><button class="dropdown-item">Zapatillas</button></li>
-                            <li><button class="dropdown-item">Sandalias</button></li>
-                            <li><button class="dropdown-item">Botas</button></li>
-                            <li><button class="dropdown-item">Accesorios</button></li>
-                            <li><button class="dropdown-item">Sale</button></li>
-                            <li><button class="dropdown-item">2x1</button></li>
-                        </ul>
-                    </li>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="filtrarDropdownCategoria" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class='bx bx-category-alt'></i> Categoria
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="filtrarDropdownCategoria">
+                                <li><a class="dropdown-item" href="?categoria=Zapatos">Zapatos</a></li>
+                                <li><a class="dropdown-item" href="?categoria=Zapatillas">Zapatillas</a></li>
+                                <li><a class="dropdown-item" href="?categoria=Sandalias">Sandalias</a></li>
+                                <li><a class="dropdown-item" href="?categoria=Botas">Botas</a></li>
+                                <li><a class="dropdown-item" href="?categoria=Accesorios">Accesorios</a></li>
+                                <li><a class="dropdown-item" href="?categoria=Sale">Sale</a></li>
+                                <li><a class="dropdown-item" href="?categoria=2x1">2x1</a></li>
+                            </ul>
+                        </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="filtrarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class='bx bx-filter'></i> Filtrar
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="filtrarDropdown">
-                            <li><button class="dropdown-item">Precio Menor</button></li>
-                            <li><button class="dropdown-item">Precio Mayor</button></li>
-                        </ul>
-                    </li>
-                </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="filtrarDropdownFiltrar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class='bx bx-filter'></i> Filtrar
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="filtrarDropdownFiltrar">
+                                <li><a class="dropdown-item" href="?filtro=precio_menor">Precio Menor</a></li>
+                                <li><a class="dropdown-item" href="?filtro=precio_mayor">Precio Mayor</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                <!-- Icono del carrito -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class='bx bxs-cart' id="cart-icon"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!--Cart-->
-                <div class="cart opacity-70" style="background-color: hsl(218, 81%, 85%)">
-                    <h2 class="cart-title">Compra</h2>
-                    <form action="insertarOrdenproducto.php" method="post" class="OrdenProducto-form"></form>
-                    <!--Content-->
-                    <div class="cart-content ">
+                    <!-- Icono del carrito -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class='bx bxs-cart' id="cart-icon"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--Cart-->
+                    <div class="cart opacity-70" style="background-color: hsl(218, 81%, 85%)">
+                        <h2 class="cart-title">Compra</h2>
+                        <form action="insertarOrdenproducto.php" method="post" class="OrdenProducto-form"></form>
+                        <!--Content-->
+                        <div class="cart-content ">
 
+                        </div>
+
+                        <!-- Total -->
+                        <div class="total">
+                            <div class="total-title">Total</div>
+                            <div class="total-price">$0</div>
+                        </div>
+
+                        <!-- Buy Button -->
+                        <button type="button" class="btn-buy" value="Comprar" name="Comprar">Compra Ahora</button>
+                        <!-- Cart Close -->
+                        <i class="bx bx-x" id="close-cart"></i>
                     </div>
-
-                    <!-- Total -->
-                    <div class="total">
-                        <div class="total-title">Total</div>
-                        <div class="total-price">$0</div>
-                    </div>
-
-                    <!-- Buy Button -->
-                    <button type="button" class="btn-buy" value="Comprar" name="Comprar">Compra Ahora</button>
-                    <!-- Cart Close -->
-                    <i class="bx bx-x" id="close-cart"></i>
-                </div>
-                <!-- Aquí termina el bloque que deseas agregar -->
+                    <!-- Aquí termina el bloque que deseas agregar -->
             </div>
         </nav>
 
