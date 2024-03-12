@@ -30,7 +30,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 }
 
-// Include header after PHP logic to avoid headers already sent error
+
 require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
 ?>
 <!-- Section: Design Block -->
@@ -106,7 +106,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
         </div>
     </div>
 </section>
-section class="background-radial-gradient overflow-hidden">
+
 
     <?php if (!empty($loginMessage)) : ?>
         <div class="alert alert-danger" role="alert">

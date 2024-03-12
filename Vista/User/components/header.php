@@ -58,7 +58,7 @@ if ($categoria) {
         <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/inicio.css">
         <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/carro.css">
         <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/pedido.css">
-        <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/preguntasfrecuentes.css">
+        <link rel="stylesheet" href="/ecommerce/Vista/User/assets/css/preguntas.css">
         <link rel="stylesheet" href="/ecommerce./Vista/User/assets/css/sucursal.css">
 
     </head>
@@ -88,7 +88,7 @@ if ($categoria) {
     <header class="decoracion">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
-                <a href=".././index.html">
+                <a href="../../../index.html">
                     <img src="../assets/logos/blanco.png" alt="Abba Shoes">
                 </a>
             </div>
@@ -102,12 +102,12 @@ if ($categoria) {
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="../pages/carro.html">CATALOGO</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/descuentos.html">OFERTAS</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/historia.html">NOSOTROS</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/Local.html">SUCURSALES</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/carro.php">CATALOGO</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/descuentos.php">OFERTAS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/historia.php">NOSOTROS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/Local.php">SUCURSALES</a></li>
                             <li class="nav-item"><a class="nav-link" href="../pages/registro.php">REGISTRATE</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../pages/loguin.php">INICIO</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../pages/inicio.php">INICIAR SECIÓN</a></li>
                         </ul>
                     </div>
                 </div>
@@ -126,9 +126,9 @@ if ($categoria) {
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="caracteristicasDropdown">
                             <form action="" method="post">
-                                <button type="submit" name="cerrar_sesion">Cerrar Sesión</button>
+                                <button type="submit" class="cerrarsession-button" name="cerrar_sesion">Cerrar Sesión</button>
                             </form>
-                            <li><a class="dropdown-item" href="../pages/NEW.html">Ayuda</a></li>
+                            <li><a class="dropdown-item" href="../pages/preguntas.php">Ayuda</a></li>
                         </ul>
                     </li>
 
@@ -159,35 +159,45 @@ if ($categoria) {
                         </li>
                     </ul>
 
-                    <!-- Icono del carrito -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class='bx bxs-cart' id="cart-icon"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--Cart-->
-                    <div class="cart opacity-70" style="background-color: hsl(218, 81%, 85%)">
-                        <h2 class="cart-title">Compra</h2>
-                        <form action="insertarOrdenproducto.php" method="post" class="OrdenProducto-form"></form>
-                        <!--Content-->
-                        <div class="cart-content ">
+                    <li class="nav-item dropdown">
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" readonly>
+                            <button class="btn btn-outline btn btn-custom mx-2" type="submit">Buscar</button>
+                        </form>
+                    </li>
 
-                        </div>
+                </ul>
 
-                        <!-- Total -->
-                        <div class="total">
-                            <div class="total-title">Total</div>
-                            <div class="total-price">$0</div>
-                        </div>
 
-                        <!-- Buy Button -->
-                        <button type="button" class="btn-buy" value="Comprar" name="Comprar">Compra Ahora</button>
-                        <!-- Cart Close -->
-                        <i class="bx bx-x" id="close-cart"></i>
+                <!-- Icono del carrito -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class='bx bxs-cart' id="cart-icon"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!--Cart-->
+                <div class="cart opacity-70" style="background-color: hsl(218, 81%, 85%)">
+                    <h2 class="cart-title">Compra</h2>
+                    <form action="insertarOrdenproducto.php" method="post" class="OrdenProducto-form"></form>
+                    <!--Content-->
+                    <div class="cart-content ">
+
                     </div>
-                    <!-- Aquí termina el bloque que deseas agregar -->
+
+                    <!-- Total -->
+                    <div class="total">
+                        <div class="total-title">Total</div>
+                        <div class="total-price">$0</div>
+                    </div>
+
+                    <!-- Buy Button -->
+                    <button type="button" class="btn-buy" value="Comprar" name="Comprar">Compra Ahora</button>
+                    <!-- Cart Close -->
+                    <i class="bx bx-x" id="close-cart"></i>
+                </div>
+                <!-- Aquí termina el bloque que deseas agregar -->
             </div>
         </nav>
 

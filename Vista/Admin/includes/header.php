@@ -25,6 +25,23 @@ if (isset($_POST['cerrar_sesion'])) {
     <link hrel="stylesheet" href="/ecommerce/Vista/Admin/includes/public/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="icon" href="/ecommerce/Vista/User/assets/logo/ASico.ico">
+    <style>
+         .cerrarsession-button {
+        background: none;
+        border: none;
+        color: blanchedalmond;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        margin-left: 20px;
+        transition: background-color 0.3s; 
+    }
+
+    .cerrarsession-button:hover {
+        background-color: gray; 
+    }
+    </style>
 
 </head>
 
@@ -44,7 +61,7 @@ if (isset($_POST['cerrar_sesion'])) {
                             </a>
                             <ul class="dropdown-menu">
                                 <form action="" method="post">
-                                    <a><button type="submit" name="cerrar_sesion" id="cerrarsession-button">Cerrar Sesión</button></a>
+                                    <a><button type="submit" name="cerrar_sesion" class="cerrarsession-button">Cerrar Sesión</button></a>
                                 </form>
                                 <li><a class="dropdown-item" href="">Ayuda</a></li>
                             </ul>
@@ -53,23 +70,23 @@ if (isset($_POST['cerrar_sesion'])) {
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registro</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item " href="/ecommerce/Vista/V-registro/index.php">Usuarios</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-registro/create.php">Agregar nuevos Usuarios</a></li>
+                                <li><a class="dropdown-item " href="/ecommerce/Vista/Admin/V-registro/index.php">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-registro/create.php">Agregar nuevos Usuarios</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Producto</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/index.php">Producto</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/create.php">Agregar nuevos </a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-producto/create.php">Categoria </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-producto/index.php">Producto</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-producto/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-producto/create.php">Categoria </a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Orden</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden/index.php">Orden</a></li>
-                                <li><a class="dropdown-item" href="/ecommerce/Vista/V-orden/create.php">Agregar nuevos </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-orden/index.php">Orden</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-orden/create.php">Agregar nuevos </a></li>
                             </ul>
                         </li>
 
@@ -77,10 +94,10 @@ if (isset($_POST['cerrar_sesion'])) {
                         <li class="nav-item dropdown" data-bs-theme="dark">
                             <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Carrito</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-carrito/index.php">Carrito</a></li>
-                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Producto/Carrito </a></li>
-                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Producto/Orden </a></li>
-                                <li><a class="dropdown-item" href="./ecommerce/Vista/Admin/V-pagos/create.php">Agregar carrito </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-carrito/index.php">Carrito</a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Carrito </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Producto/Orden </a></li>
+                                <li><a class="dropdown-item" href="/ecommerce/Vista/Admin/V-pagos/create.php">Agregar carrito </a></li>
                             </ul>
                         </li>
 

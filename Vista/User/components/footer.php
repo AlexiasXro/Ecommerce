@@ -1,5 +1,4 @@
 <!--footer-->
-<!--footer-->
 <footer class="  text-left text-secondary mt-auto ">
     <div class="decoracionfooter pie-pagina">
         <div class="container p-4">
@@ -7,7 +6,7 @@
                 <div class="col-md-4">
                     <figure>
                         <a href="../../../index.html">
-                            <img src="/ecommerce/Vista/User/assets/img/logos/logo_p.png" alt="Logo de Abba Shoe" width="250px"
+                            <img src="../assets/logos/LOGO-ABBA.jpeg" alt="Logo de Abba Shoe" width="250px"
                                 class="img-fluid">
                         </a>
                     </figure>
@@ -18,18 +17,19 @@
                         <li><a href="https://www.instagram.com/abba.shoe/" class="redes-sociales" ><img src="/ecommerce/Vista/User/assets/logos/instagram.png"class="redes-img" alt="Instagram">Instagram AbbaShoes</a></li>
                             <li><a href="https://www.instagram.com/abba.shoe/" class="redes-sociales" ><img src="/ecommerce/Vista/User/assets/logos/facebook.png"class="redes-img" alt="Facebook">Facebook AbbaShoes</a></li>
                             <li><a href="https://web.whatsapp.com/" class="redes-sociales" ><img src="/ecommerce/Vista/User/assets/logos/messenger.png" class="redes-img" alt="WhatsApp">+543644xxxxxx</a></li>
-                            <li><a href="#" class="text-secondary">Email: AbbaShoes@gmail.com</a></li>
-                            <li><a href=".../Vista/User/pages/preguntas.html" class="text-secondary" >Preguntas Frecuentes</a></li>
+                            
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h5>Horarios Abierto</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../pages/Local.html" class="text-secondary">Lunes a Miércoles de 08:30 a 12:00 hs</a></li>
-                        <li><a href="../pages/Local.html" class="text-secondary">Jueves 12:30 a 18:30 hs</a></li>
-                        <li><a href="../pages/Local.html" class="text-secondary">Viernes 14:30 a 20:30 hs</a></li>
-                        <li><a href="../pages/Local.html" class="text-secondary">Sábado 09:00 a 11:00 hs</a></li>
-                        <li><a href="../pages/Local.html" class="text-secondary">Domingo cerrado</a></li>
+                        <li><a href="../pages/Local.php" class="text-secondary">Lunes a Miércoles de 08:30 a 12:00 hs</a></li>
+                        <li><a href="../pages/Local.php" class="text-secondary">Jueves 12:30 a 18:30 hs</a></li>
+                        <li><a href="../pages/Local.php" class="text-secondary">Viernes 14:30 a 20:30 hs</a></li>
+                        <li><a href="../pages/Local.php" class="text-secondary">Sábado 09:00 a 11:00 hs</a></li>
+                        <li><a href="../pages/Local.php" class="text-secondary">Domingo cerrado</a></li>
+                        <li><a href="#" class="text-secondary"><i class='bx bx-mail-send'></i>&nbspEmail: AbbaShoes@gmail.com</a></li>
+                            <li><a href="../pages/preguntas.php" class="text-secondary" ><i class='bx bxs-help-circle'></i>&nbspPreguntas Frecuentes</a></li>
                     </ul>
                 </div>
             </div>

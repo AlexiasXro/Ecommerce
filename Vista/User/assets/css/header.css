@@ -7,9 +7,9 @@ font-family: 'Tajawal', sans-serif;*/
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Open+Sans:wght@400;500;600;800&display=swap');
 /*font-family: 'DM Serif Display', serif;
 font-family: 'Open Sans', sans-serif;
-3 TARJETAS PRODUCTO ALEGRE*/
+3 TARJETAS PRODUCTO ALEGRE--font-family: "Bebas Neue", sans-serif;*/
 
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap')
 
 :root {
     --gradiente-color-1: #44006b; /* Primer */
@@ -159,12 +159,15 @@ header.search-container {
 
 .text-slide i{
     letter-spacing: 3px;
-    font-family: 'Tajawal', sans-serif
+    font-family: Georgia, serif;
+}
+.text-carousel .text-slide {
+    font-family: Georgia, serif;
 }
 
 
 /* Buscador */
-form.d-flex {
+.form.d-flex {
     border-image: linear-gradient(to right, #814C25, #FFDE59);
     border: 2px solid transparent; 
     border-radius: 10px; 
@@ -186,17 +189,16 @@ button.btn:hover {
     background-color:#c96822 ; 
 }
 
-/* anuncio inicial */
-#cerrarsession-button {
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    text-decoration: underline; /* Esto hará que el texto se vea como un enlace */
-    color: blue; /* Cambia el color del texto si lo deseas */
-}
 
-#cerrarsession-button:hover {
-    /* Estilos para cuando el mouse está sobre el botón */
+
+.btn-custom {
+    background-color:  rgba(140, 178, 243, 0.553);
+    border-color:  rgb(140, 177, 243);
+    color: rgb(205, 199, 199); 
+    font-family: 'Kumbh Sans', sans-serif;
+    cursor: pointer;
+    letter-spacing: 5px;
+    font-weight: bold;
+    
 }
+/*boton buscar nav*/
