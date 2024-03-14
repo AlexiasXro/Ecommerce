@@ -12,7 +12,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
 
         <div class="container">
             <div class="row justify-content-center">
-                <div class="card mb-3" style="max-width: 1300px;">
+                <div class="cardh mb-3" style="max-width: 1300px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="../assets/logos/LOGO-ABBA.jpeg" class="img-fluid rounded-start" alt="...">
@@ -48,7 +48,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
                     </div>
                 </div>
 
-                <div class="card mb-3" style="max-width: 1300px;">
+                <div class="cardh mb-3" style="max-width: 1300px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="../assets/img/histori (2).png" class="img-fluid rounded-start" alt="...">
@@ -78,7 +78,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
                     </div>
                 </div>
 
-                <div class="card mb-3" style="max-width: 1300px;">
+                <div class="cardh mb-3" style="max-width: 1300px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="../assets/img/histori (1).png" class="img-fluid rounded-start" alt="...">
@@ -105,7 +105,7 @@ require_once('c://xampp/htdocs/ecommerce/Vista/User/components/header.php');
                     </div>
                 </div>
 
-                <div class="card mb-3" style="max-width: 1300px;">
+                <div class="cardh mb-3" style="max-width: 1300px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="../assets/img/cel.png" class="img-fluid rounded-start" alt="...">
