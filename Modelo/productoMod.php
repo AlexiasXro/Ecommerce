@@ -25,6 +25,8 @@ class Producto {
         $this->talle = $talle;
         $this->color = $color;
         $this->fecha_creacion = $fecha_creacion;
+
+        //$this->setIdProducto($id_producto);
     }
 
     // Setters

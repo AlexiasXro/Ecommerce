@@ -7,13 +7,13 @@ class ProductoCon {
         $productoModel = new Producto();
         
         // Inicializar la variable de la ruta de la imagen por defecto
-        $ruta_imagen = 'Vista/User/assets/img/default.png';
+        $ruta_imagen = '../Vista/User/assets/img/default.png';
     
         // Obtener la ruta de la imagen del formulario
         if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $imagen_tmp = $_FILES['imagen']['tmp_name'];
             $nombre_imagen = $_FILES['imagen']['name'];
-            $ruta_imagen = 'Vista/User/assets/img/producto-img/' . $nombre_imagen; // Ruta donde deseas guardar las imágenes
+            $ruta_imagen = '../Vista/User/assets/img/producto-img/' . $nombre_imagen; // Ruta donde deseas guardar las imágenes
             move_uploaded_file($imagen_tmp, $ruta_imagen);
         }
     

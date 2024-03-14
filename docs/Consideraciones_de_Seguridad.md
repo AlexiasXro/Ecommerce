@@ -15,16 +15,14 @@ Al crear contraseñas, se recomienda seguir estas pautas para garantizar la segu
 
 Para garantizar la seguridad de las contraseñas almacenadas en la base de datos, se siguen las siguientes prácticas:
 
-- Utilizar funciones hash seguras, como bcrypt, para cifrar las contraseñas antes de almacenarlas en la base de datos.
-- No almacenar las contraseñas en texto plano ni utilizar algoritmos de hash obsoletos o vulnerables.
-- Implementar medidas adicionales, como agregar un salt único a cada contraseña antes de aplicar el hash, para aumentar la seguridad contra ataques de fuerza bruta y tablas de arco iris.
+- Utilizar funciones hash seguras, como password_hash(), para cifrar las contraseñas antes de almacenarlas en la base de datos.
+- No almacenar las contraseñas en texto plano.
 
 ## Protección contra ataques de inyección de código:
 
 ### Uso de consultas preparadas o sanitización de datos para prevenir ataques de inyección SQL:
 
-Al interactuar con la base de datos, se recomienda utilizar consultas preparadas o funciones de enlace de parámetros proporcionadas por las bibliotecas PDO (PHP Data Objects) para evitar ataques de inyección SQL. Por ejemplo:
-
-```php
-$stmt = $pdo->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND contraseña = :contraseña');
-$stmt->execute(array('usuario' => $usuario, 'contraseña' => $contraseña));
+Al interactuar con la base de datos, utilize consultas preparadas o funciones de enlace de parámetros proporcionadas por las bibliotecas PDO (PHP Data Objects) para evitar ataques de inyección SQL. Por ejemplo:
+1. Autor: Caceres Alejandra Romina
+2. Fecha: Marzo 2024
+3. Estado: Actual
